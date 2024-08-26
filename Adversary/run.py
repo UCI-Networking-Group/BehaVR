@@ -1,4 +1,5 @@
 #@ijarin
+#script to run behavr 
 import os
 
 # Relative path to the main.py script

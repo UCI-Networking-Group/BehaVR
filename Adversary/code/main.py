@@ -1,5 +1,6 @@
-#initialize the required libraries
 #@ijarin
+#Run to train and evaluate different BehaVR adversaries
+#initialize the required libraries
 import numpy as np
 import pandas as pd
 import os

@@ -1,4 +1,5 @@
 #@ijarin
+#example plot
 import matplotlib.pyplot as plt
 import seaborn as sns #grafikleştirme için
 import matplotlib.pyplot as plt

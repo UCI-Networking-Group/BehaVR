@@ -1,4 +1,5 @@
 #@ijarin
+#necessary function to preprocess input data, devide train/test, app grouping etc
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np

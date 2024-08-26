@@ -1,4 +1,4 @@
-#This file provides processed data
+#This file contain the functions to call different VR sensor data, perform initial preprocessing and return data 
 #@ijarin
 import numpy as np
 import pandas as pd

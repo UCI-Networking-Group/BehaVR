@@ -1,12 +1,12 @@
-Summary of the paper: 
+##Summary of the paper: 
 VR platforms offer diverse applications but raise privacy concerns due to their sensors, which can uniquely identify users. This study introduces BehaVR, a framework for collecting and analyzing sensor data from multiple VR apps to assess user identification risks. Using real user data from 20 apps, the research builds machine learning models that achieve up to 100% accuracy in identifying users based on sensor data. BehaVR is the first comprehensive analysis of user identification in VR across real-world apps, highlighting key features and sensor groups based on app functionality and adversary capabilities.
 
 This folder includes code for feature engineering, design and evaluating BehaVR adversary, analyze top features etc. 
 
-Dependencies: 
+##Dependencies: 
 Please see requirement.txt file for all the dependencies.
 
-Running Code: 
+##Running Code: 
    \Adversary:
        run.py`: Automatically runs the main file and please adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios. 
        \code:

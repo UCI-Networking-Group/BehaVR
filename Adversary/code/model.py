@@ -1,5 +1,5 @@
-#model
 #@ijarin
+#Contain necessary function for models and feature analysis for BehaVR
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from scipy.stats import randint
