@@ -1,2 +1,2 @@
 # BehaVR
-This repository contains BehaVR, a framework designed to analyze unique user identification within VR apps 
+This repository contains BehaVR, a framework designed to analyze unique user identification within VR apps using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper [BehaVR:User Identification Based on VR Sensor Data.](https://arxiv.org/pdf/2308.07304) Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework.
