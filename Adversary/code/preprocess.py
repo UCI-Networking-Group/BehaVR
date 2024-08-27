@@ -1,4 +1,5 @@
 #@ijarin
+
 #necessary function to preprocess input data, devide train/test, app grouping etc
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -73,6 +74,8 @@ def change_nameFace(datar):
   datar.columns=datar.columns.str.replace('_med', ' Median')
   datar.columns=datar.columns.str.replace('_std', ' Std')
   return datar
+
+
 
 #change facial features name into standard one
 def change_nameF(datar):
@@ -192,6 +195,7 @@ def dT(d_h,rt):
   return d_train, d_test
 
 
+
 #stradified train test split/considering subsession
 def stratified_train_test_split(X, Y, M):
     X=np.array(X)
@@ -214,6 +218,7 @@ def stratified_train_test_split(X, Y, M):
     return X_train,Y_train
 
 
+
 #train_test_split
 def train_test(d_h,M,rt,target):
   d_train,d_test=dT(d_h,rt)
@@ -227,7 +232,7 @@ def train_test(d_h,M,rt,target):
   #X_test,x,y_test,y=train_test_split(X_test, y_test, test_size=1, random_state=0,shuffle=False)
   #X_test,y_test=split(X_test,y_test,20)
   X_test,y_test = stratified_train_test_split(X_test,y_test,M)
-  X_train,X_val,y_train,y_val=train_test_split(X_train, y_train, test_size=0.0000001, random_state=0)
+  X_train,X_val,y_train,y_val=train_test_split(X_train, y_train, test_size=0.1, random_state=0)
   #print(X_test.shape)
   #print("shape of train data", X_train.shape,y_train.shape)
   #print("shape of test data", X_test.shape,y_test.shape)
@@ -355,12 +360,12 @@ def Emotion_units():
     f_contempt=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w33_max',
     'w33_min','w33_mean','w33_std','w33_med','w12_max','w12_min','w12_mean','w12_std','w12_med','w11_max','w11_min','w11_mean','w11_std','w11_med']
     
-    f_imp=['w51_max',
-    'w51_min','w51_mean','w51_std','w51_med','w28_max','w28_min','w28_mean','w28_std','w28_med','w13_max','w13_min','w13_mean','w13_std','w13_med',
-           'w14_max','w14_min','w14_mean','w14_std','w14_med']
+
+
 
 
     # combine All
+    #emotions only that we have used in our experiments
     common_words = set(f_smile).intersection(f_anger, f_sadness)
     all_words = set(f_smile + f_anger + f_sadness+f_surprise+f_fear+f_disgust)
     all_words1=set(f_smile + f_anger + f_sadness+f_surprise+f_fear+f_disgust+f_contempt+f_imp)
@@ -376,6 +381,7 @@ def Emotion_units():
 def Emotion(d,f):
   d=d[f]
   return d
+
 
 
 #emotion process
@@ -395,6 +401,7 @@ def DataE(D,f):
 def app_groups_name():
      gname=['social','flight','Rhy','golf','IN','KW','Rhy','shoot','teleport']
      return gname
+
 
 #put each app as a list according to app group
 #defines in BehaVR
