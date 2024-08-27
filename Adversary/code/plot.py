@@ -118,9 +118,13 @@ heatmap_array=open('path/').readline().strip().split(',')
 
 
 #plot
-df_cm = pd.DataFrame(array, range(g_n), range(g_n))
+# Create a DataFrame for the heatmap using the array 'heatmap_array' with indices ranging from 0 to g_n-1
+df_cm = pd.DataFrame(heatmap_array, range(g_n), range(g_n))
+
 # plt.figure(figsize=(10,7))
 sn.set(font_scale=1.1) # for label size
+
+# Create a heatmap with specified font size, annotations, and color map
 sn.heatmap(df_cm, annot=True, annot_kws={"size": 10},cmap="Blues",xticklabels=clm, yticklabels=clm,fmt=".1f",vmin=0, vmax=100) # font size
 plt.xlabel("Testing",fontsize=20)
 plt.ylabel("Training",fontsize=20)
@@ -129,6 +133,6 @@ plt.tight_layout()
 
 #save figure
 directory='.../VR/BehaVR/results/graphs'
-filename='CM_body.pdf'
+filename='CM.pdf'
 filepath = os.path.join(directory, filename)
-test3.savefig(filepath)
+test4.savefig(filepath)

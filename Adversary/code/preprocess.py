@@ -428,8 +428,11 @@ def app_grouping(app_group):
 
 #concatenate different apps data or user can just use one apps data, in that case len(g1) should be 1
 def f_data(g1,d1,target):
+    # Calculate the number of apps in the group
     M=len(g1)
     print(M)
+    
+    #create empty list to save datasets from each app
     df_list = []
     if (M==1):
         d_h=data_preProcess(d1, g1[0],target)

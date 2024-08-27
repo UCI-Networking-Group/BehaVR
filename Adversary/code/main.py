@@ -141,9 +141,14 @@ accGroup=np.zeros((len(gname),len(gname)))
 final_labels=np.zeros((len(g_id),num_user))
 accBar=np.zeros(len(g_id)) #attack accuracy
 models=[] #save each models for each app
+#save final accuracy
 accfinal=[]
+#Accuracy for corresponding emotions in each app
 acc_emotion=np.zeros((len(g_id),n_emo))
-output_dir = args.output_dir #output directory
+
+#output directory
+output_dir = args.output_dir
+#save final features
 final_features=[]
 
 
@@ -460,7 +465,7 @@ elif (adv=='Zero-Day'):
                 model= final_model(Model,SG,cross_val, X_train,y_train)
                 models_zd.append(model)
                 
-         print('print length of zd models',len(models))
+         print('print length of zd models',len(models_zd))
          #collect top features
          #feature=Top_Features(model,gname[j],f_n,X_train)
          #final_features.append(feature)
