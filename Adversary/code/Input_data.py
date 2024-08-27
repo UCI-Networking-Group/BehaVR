@@ -2,16 +2,22 @@
 #@ijarin
 import numpy as np
 import pandas as pd
+
+#import necessary functions from preprocess file
 from preprocess import change_nameFace, change_nameF, change_nameH, change_nameEye,change_nameE, RLeft_Right, change_nameHand, change_eliminate_Head, change_eliminate_RightHand, Emotion_units, change_nameFacialEexpression
 
 
 def Final_feature(SG,OW):
-    if SG=='BM': #Body Motion Data
+    #Body Motion Data
+    if SG=='BM':
+        #If open world setting is not true
         if OW==False:
             #call abstracted Body Motion data for 20 users
             data2 =pd.read_csv('.../VR/data/BM/SG1_FBN_r2_feature.csv', sep=',')
             data1 = pd.read_csv('.../VR/data/BM/SG1_FBN_r1_feature.csv', sep=',')
             data_05 = pd.read_csv('.../VR/data/BM/SG1_FBN_r0.5_feature.csv', sep=',')
+        
+        #If open world setting is true
         else:
             print("Open World Data as Input:")
             #call abstracted Body Motion for open world settings
@@ -26,12 +32,18 @@ def Final_feature(SG,OW):
         datar_05=change_nameH(data_05)
         D=[datar2,datar1,datar_05]
 
-    elif SG=='EG': #Eye Tracking/Gaze Data
+    #Eye Tracking/Gaze Data
+    elif SG=='EG':
+    
+        #If open world is not true
         if OW==False:
             #call abstracted Eye Gaze data for 20 users
             data2 =pd.read_csv('/data/..', sep=',')
             data1 = pd.read_csv('/data/..', sep=',')
             data_05 = pd.read_csv('/data/..', sep=',')
+            
+        
+        #If open world setting is true
         else:
             print("Open World Data as Input:")
             data2 =pd.read_csv('/data/..', sep=',') #collect openworld data
@@ -55,12 +67,17 @@ def Final_feature(SG,OW):
         D=dataEye
 
 
-    elif SG=='HJ':  #Hand joint or Hand Tracking data
+    #Hand joint or Hand Tracking data
+    elif SG=='HJ':
+        
+        #If open world setting is not true
         if OW==False:
             #call abstracted Hand Joint data for 20 users
             data2 =pd.read_csv('/data/..', sep=',')
             data1 = pd.read_csv('/data/..', sep=',')
             data_05 = pd.read_csv('/data/..', sep=',')
+            
+        #If open world setting is true
         else:
             print("Open World Data as Input:")
             data2 =pd.read_csv('/data/..', sep=',') #collect openworld data
@@ -75,12 +92,17 @@ def Final_feature(SG,OW):
         D=[datar2,datar1,datar_05]
         
     
+    #call facial expression data
     elif SG=='FE':
+    
+        #If open world setting is not true
         if OW==False:
             #call abstracted Facial data for 20 users
             data2 =pd.read_csv('.../data/FE/SG4_FBN_r2_feature.csv', sep=',')
             data1 = pd.read_csv('.../VR/data/FE/SG4_FBN_r1_feature.csv', sep=',')
             data_05 = pd.read_csv('.../VR/data/FE/SG4_FBN_r0.5_feature.csv', sep=',')
+
+        #If open world setting is true
         else:
             #call abstracted Body Motion for open world settings
             print("Open World Data as Input:")
@@ -97,8 +119,11 @@ def Final_feature(SG,OW):
     return D
 
 
+#if eliminate certain features
 def Feature_elimination(SG):
-    if SG=='BM': #Body Motion Data
+
+    #Body Motion Data
+    if SG=='BM':
         #call abstracted Body Motion data for 20 users
         data2 =pd.read_csv('.../data/BM/SG1_FBN_r2_feature.csv', sep=',')
         data1 = pd.read_csv('...data/BM/SG1_FBN_r1_feature.csv', sep=',')
@@ -111,7 +136,8 @@ def Feature_elimination(SG):
         
         DE=[datar2,datar1,datar_05]
     
-    elif SG=='EG': #Eye Tracking/Gaze Data
+    #Eye Tracking/Gaze Data
+    elif SG=='EG':
         #call abstracted Eye Gaze data for 20 users
         data2 =pd.read_csv('/data/..', sep=',')
         data1 = pd.read_csv('/data/..', sep=',')
@@ -126,7 +152,8 @@ def Feature_elimination(SG):
         DE=[datar2,datar1,datar_05]
 
 
-    elif SG=='HJ': #Hand joint data
+    #Hand joint data
+    elif SG=='HJ':
         #call abstracted Hand Joint data for 20 users
         data2 =pd.read_csv('/data/..', sep=',')
         data1 = pd.read_csv('/data/..', sep=',')
@@ -139,8 +166,10 @@ def Feature_elimination(SG):
         
         #final
         DE=[datar2,datar1,datar_05]
-    
-    elif SG=='FE': #Eye Tracking/Gaze Data
+
+
+    #Facial Expression data
+    elif SG=='FE':
         #call abstracted Hand Joint data for 20 users
         data2 =pd.read_csv('/data/..', sep=',')
         data1 = pd.read_csv('/data/..', sep=',')
