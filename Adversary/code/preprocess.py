@@ -1,6 +1,7 @@
 #@ijarin
+# This file contains necessary functions for preprocessing input data, dividing train/test sets, app grouping, and more
 
-#necessary function to preprocess input data, devide train/test, app grouping etc
+#import necessary libraries
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
