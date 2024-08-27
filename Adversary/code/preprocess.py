@@ -184,7 +184,7 @@ def data_preProcess(d_h,g_id,target):
 #divide the dataset into training and testing based on their round. For round-1: training data, round-2: test data
 
 #Get d_train and d_test from a function
-def dT(d_h,rt):
+def dT(d_h,rt,P):
   if (rt=='t'):
     #d_h = d_h[d_h.user_id= P]
     d_h = d_h[(d_h['user_id'].isin(P))]
@@ -221,8 +221,8 @@ def stratified_train_test_split(X, Y, M):
 
 
 #train_test_split
-def train_test(d_h,M,rt,target):
-  d_train,d_test=dT(d_h,rt)
+def train_test(d_h,M,rt,target,P):
+  d_train,d_test=dT(d_h,rt,P)
   y_train = np.array(d_train[target])
   #print(np.unique(y_train))
   X_train= d_train.drop(target, axis = 1)

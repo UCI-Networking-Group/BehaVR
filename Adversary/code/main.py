@@ -98,6 +98,11 @@ rp2=args.r2
 #Boolean parameter to determine if all users are included in the consideration
 rt=args.rt
 
+# Remove specific users from the existing user pool
+if (rt=='t'):
+    for p in Non_users:
+    sk.remove(p)
+
 # Argument to specify the type of adversary to be used
 adv=args.adv
 
@@ -165,7 +170,7 @@ else:
          d_h=data_preProcess(d,g_id[j],args.target)
          print("check unique users id:",np.unique(d_h['user_id'].values))
          print("load train/test dataset")
-         X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target)
+         X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target,sk)
          print('size of training data',X_train.shape)
          sd=index_dev(y_test) #find the 'sub session' division point
          #select Model and change data according to model type
@@ -218,7 +223,7 @@ if (adv=='App'):
       d_h=data_preProcess(d,g_id[j],args.target)
       print("check unique users id:",np.unique(d_h['user_id'].values))
       print("load train/test dataset")
-      X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target)
+      X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target,sk)
       print('size of training data',X_train.shape)
       sd=index_dev(y_test) #find the 'sub session' division point
       #select Model and change data according to model type
@@ -268,7 +273,7 @@ elif (adv=='emotion'): #adversary consider particular emotions for identificatio
          d_h=data_preProcess(d,g_id[j],args.target)
          print("check unique users id:",np.unique(d_h['user_id'].values))
          print("load train/test dataset")
-         X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target)
+         X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target,sk)
          print('size of training data',X_train.shape)
          sd=index_dev(y_test) #find the 'sub session' division point
          #select Model
@@ -306,8 +311,8 @@ elif (adv=='Sensor_fusion'): #adversary consider fusing two or more sensors if o
         d_h1=data_preProcess(d1,g_id[j],target)
         
         #Train-Test division for both dataset
-        X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target)
-        X_train1,y_train1,X_test1,y_test1,X_val1,y_val1=train_test(d_h1,M,rt,target)
+        X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target,sk)
+        X_train1,y_train1,X_test1,y_test1,X_val1,y_val1=train_test(d_h1,M,rt,target,sk)
         sd=index_dev(y_test) #find the 'sub session' division point
         sd1=index_dev(y_test1)
         print(f"Size of training data for {SG1} and {SG2} are", X_train.shape, X_train1.shape)
@@ -367,8 +372,8 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
         d_h1=data_preProcess(d1,g_id[j],target)
         
         #Train-Test division for both dataset
-        X_train,y_train,X_test1,y_test1,X_val,y_val=train_test(d_h,M,rt,target) #use this training data
-        X_train1,y_train1,X_test,y_test,X_val1,y_val1=train_test(d_h1,M,rt,target) #use Open world data for evaluation
+        X_train,y_train,X_test1,y_test1,X_val,y_val=train_test(d_h,M,rt,target,sk) #use this training data
+        X_train1,y_train1,X_test,y_test,X_val1,y_val1=train_test(d_h1,M,rt,target,sk) #use Open world data for evaluation
         sd=index_dev(y_test) #find the 'sub session' division point
         
         #Select and train model
@@ -417,7 +422,7 @@ elif (adv=='Zero-Day'):
             d_h=data_preProcess(d,g[0],target)
             print("check unique users id:",np.unique(d_h['user_id'].values))
             print("load train/test dataset")
-            X_train,y_train,_,_,X_val,y_val=train_test(d_h,M,rt,target)
+            X_train,y_train,_,_,X_val,y_val=train_test(d_h,M,rt,target,sk)
             print('size of training data',X_train.shape)
              #select Model and change data according to model type
             if Model=='RF':
@@ -445,7 +450,7 @@ elif (adv=='Zero-Day'):
                 print("load train/test dataset")
                 
                 #use all sessions data as training data
-                X_train1,y_train1,X_train2,y_train2,X_val,y_val=train_test(d_h,M,rt,target)
+                X_train1,y_train1,X_train2,y_train2,X_val,y_val=train_test(d_h,M,rt,target,sk)
                 
                 #merge and get final training data
                 X_train = np.concatenate((X_train1, X_train2), axis=0)
@@ -487,7 +492,7 @@ elif (adv=='Zero-Day'):
                 #if there is more than one app
                 else:
                     d_h=f_data(g,d,target)#evaluate for each of all app groups data on jth app group model
-                _,_,X_test,y_test,_,_=train_test(d_h,M,rt,target)
+                _,_,X_test,y_test,_,_=train_test(d_h,M,rt,target,sk)
                 print('size of test data',X_test.shape)
                 sd=index_dev(y_test)
                 
