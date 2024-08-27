@@ -1,14 +1,36 @@
+#This file provides sample codes for produce different plots
+#@ijarin
+
 #import necessary libraries
 import numpy as np
 import pandas as pd
 import os
 from matplotlib import pyplot as plt
-import seaborn as sns #grafikleştirme için
+import seaborn as sn
+from preprocess import app_groups_name
+
 
 #initialization
-clm=['Social','Archery','Flight Sim.','Golfing','Int.Nav.','Knu.Walk.','Rhythm','Shooting','Teleport.'] #column name for app group
-clr=['r','lime','b','y','orange','mediumslateblue','c','g','m'] #Different color for different app group
-num_apps = 20  # Set this to the number of labels you need
+
+#column name for app group
+clm=['Social','Archery','Flight Sim.','Golfing','Int.Nav.','Knu.Walk.','Rhythm','Shooting','Teleport.']
+
+#Different color for different app group
+clr=['r','lime','b','y','orange','mediumslateblue','c','g','m']
+
+#Apps chosen from different group
+g=[15,5,19,....]
+
+#call app groups name
+gname=app_groups_name()
+
+#number of app groups
+g_n=len(gname)
+
+# Set this to the number of apps you need
+num_apps = 20 #number of total apps
+
+#Define x_axis for each app
 x_axis = [f'$a_{i+1}$' for i in range(num_labels)]
 num=range(1,num_apps)
 
@@ -16,6 +38,7 @@ num=range(1,num_apps)
 #load necessary results
 acc=open('path/').readline().strip().split(',')
 accController=open('path/').readline().strip().split(',')
+
 
 #initialize plot
 test1 = plt.figure()
@@ -57,11 +80,11 @@ filename='AppAdv_Acc_motion20_cmp_block.pdf'
 filepath = os.path.join(directory, filename)
 test2.savefig(filepath)
 
+
 #plot minimum time
 average_time=open('path/').readline().strip().split(',') #average time for each app group
 acc_group=open('path/').readline().strip().split(',') #identification accuracy per app group (each sample app from each group) per average time
 
-open('path/').readline().strip().split(',')
 test3 = plt.figure()
 markers=['o']
 for i in range(len(g)):
@@ -82,3 +105,30 @@ filename='AppAdv_AccBlockPerUser_Motion.pdf'
 filepath = os.path.join(directory, filename)
 test3.savefig(filepath)
 
+
+
+#create Heatmap for Zero day Scenarios
+
+#initialize the plot
+test4 = plt.figure()
+
+
+#upload saved results (identification accuracy) from zero day settings
+heatmap_array=open('path/').readline().strip().split(',')
+
+
+#plot
+df_cm = pd.DataFrame(array, range(g_n), range(g_n))
+# plt.figure(figsize=(10,7))
+sn.set(font_scale=1.1) # for label size
+sn.heatmap(df_cm, annot=True, annot_kws={"size": 10},cmap="Blues",xticklabels=clm, yticklabels=clm,fmt=".1f",vmin=0, vmax=100) # font size
+plt.xlabel("Testing",fontsize=20)
+plt.ylabel("Training",fontsize=20)
+plt.tight_layout()
+
+
+#save figure
+directory='.../VR/BehaVR/results/graphs'
+filename='CM_body.pdf'
+filepath = os.path.join(directory, filename)
+test3.savefig(filepath)
