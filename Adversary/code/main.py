@@ -14,6 +14,8 @@ from Input_data import Final_feature
 from preprocess import data_preProcess, dT,train_test,stratified_train_test_split, index_dev,divide_pred, final_label, Emotion, DataE, Emotion_units, concatenate_arrays, app_groups_name, app_grouping, f_data, Feature_elimination
 from model import RF_tuning, XB_tuning, final_model, Top_Features
 import os
+
+
 #arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--adv', type=str, help='Type of Adversary',default='App')
@@ -73,6 +75,7 @@ final_features=[]
 
 #data=Final_feature(SG) #Call the input proccessed data
 
+#Adversarial settings=App adversary
 if (adv=='App'):
     if feature_elim==True: #if we eliminate important features and see identification accuracy
         data=Feature_elimination(SG)
@@ -116,7 +119,8 @@ if (adv=='App'):
       app_no='a_'+str(g_id[j])
       accuracy=str(accBar[j])+'%'
       accfinal.append((app_no, accuracy))
-      
+
+#Adversarial settings=Facial Emotions
 elif (adv=='emotion'): #adversary consider particular emotions for identification
     data=Final_feature(SG,OW) #call input processed data (containing final features per block)
     for j in range(len(g_id)):
@@ -153,6 +157,8 @@ elif (adv=='emotion'): #adversary consider particular emotions for identificatio
       app_no='a_'+str(g_id[j])
       accfinal.append((app_no,acc_emotion[j,:]))
 
+
+#Adversarial settings=Multiple Sensor Fusion
 elif (adv=='Sensor_fusion'): #adversary consider fusing two or more sensors if one of the sensors identification accuracy is not good enough; optimization for param r is not required as adv already optimized for single sensors.
     data1=Final_feature(SG1,OW)
     data2=Final_feature(SG2,OW)
@@ -181,6 +187,7 @@ elif (adv=='Sensor_fusion'): #adversary consider fusing two or more sensors if o
         
         model=final_model(Model,SG1,cross_val, X_train,y_train)
         model1=final_model(Model,SG2,cross_val, X_train1,y_train1)
+        
         #prediction
         y_pred = model.predict(np.array(X_test))
         y_pred1 = model1.predict(np.array(X_test1))
@@ -214,6 +221,8 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
     data=Final_feature(SG,OW)#call original input data for training
     OW=True #OW=True state that open-world (OW) data calling is true, so get input data from OW settings
     dataOW=Final_feature(SG,OW) #collect open-world data
+
+#loop over n number of apps
     for j in range(len(g_id)):
         d=data[rp] #ratio of FBA=1
         d1=dataOW[rp]
@@ -253,6 +262,7 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
         app_no='a_'+str(g_id[j])
         accfinal.append((app_no,acc_emotion[j,:]))
 
+#Adversarial settings=Zero day settings
 elif (adv=='Zero-Day'): #Zero Day scenarios
     data=Final_feature(SG,OW)#call original input data for training
     d=data[rp] #data with optimized ratio
@@ -276,7 +286,9 @@ elif (adv=='Zero-Day'): #Zero Day scenarios
              #call final model
             model= final_model(Model,SG,cross_val, X_train,y_train)
             models.append(model)
-         else: #if there is more than one app in the following group
+        
+        #if there is more than one app in the following group
+         else:
             for k in range(len(g)):
                 g_k=g[:k] + g[k+1:]
                 print('the app/apps that participate in training is:',g_k)
@@ -303,6 +315,7 @@ elif (adv=='Zero-Day'): #Zero Day scenarios
          #collect top features
          #feature=Top_Features(model,gname[j],f_n,X_train)
          #final_features.append(feature)
+         
          for i in range(len(gname)): #evaluate all groups apps using data
             g=app_grouping(gname[i])
             acc_i=np.zeros(len(models))
@@ -325,6 +338,7 @@ elif (adv=='Zero-Day'): #Zero Day scenarios
                 acc_i[k1]=accuracy_score(true_labels, final)*100
             print("accuracy for each app:", acc_i)
             accGroup[j,i]=np.average(acc_i)#accuracy_score(true_labels, final)*100 #accuracy per app group for each of all app group
+            
          print("final identification accuracy for "+gname[j]+" app group is "+str(accGroup[j,:])+"\%")
          accfinal.append((gname[j], accGroup[j,:]))
             
