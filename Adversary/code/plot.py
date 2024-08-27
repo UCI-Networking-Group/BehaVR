@@ -75,6 +75,7 @@ plt.xlim([0,100])
 test3.show()
 plt.legend(ncol=2,loc='lower right',fontsize=10)
 
+
 #save figure
 directory='.../VR/BehaVR/results/graphs'
 filename='AppAdv_AccBlockPerUser_Motion.pdf'

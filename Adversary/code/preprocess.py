@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 
+
 #Function for Preprocessing Body Motion Data
 def change_nameH(datar):
   datar.columns=datar.columns.str.replace('_1', ' Headset')
@@ -21,11 +22,13 @@ def change_nameH(datar):
   datar.columns=datar.columns.str.replace('_std', ' Std')
   return datar
   
+
 #Function for Processing Eye Gaze Data
 def change_nameE(datar):
   datar.columns=datar.columns.str.replace('_x', '_L')
   datar.columns=datar.columns.str.replace('_y', '_R')
   return datar
+
 
 #Change name of final eyedata (after augmentation)
 def change_nameEye(datar):
@@ -38,6 +41,8 @@ def change_nameEye(datar):
   datar.columns=datar.columns.str.replace('_median', ' Median')
   datar.columns=datar.columns.str.replace('_std', ' Std')
   return datar
+
+
 #Feature Augmentation of Eye data
 def RLeft_Right(d, b=1):
     metrics = [
@@ -52,6 +57,7 @@ def RLeft_Right(d, b=1):
         d[f'{metric}_LR'] = abs(d[f'{metric}_L']*b - d[f'{metric}_R']*b)
     
     return d
+  
   
 #Function for Preprocessing Facial Data
 def change_nameFace(datar):
@@ -68,6 +74,7 @@ def change_nameFace(datar):
   datar.columns=datar.columns.str.replace('_std', ' Std')
   return datar
 
+#change facial features name into standard one
 def change_nameF(datar):
   for i in range(64,0,-1):
       s2='w'+str(i)+'_'
@@ -109,6 +116,8 @@ def change_nameHand(datar):
   datar = datar.reset_index(drop=True)
   return datar
 
+
+
 #eliminate specific types of features (here Headset Features)
 def change_eliminate_Head(datar):
   datar.columns=datar.columns.str.replace('_1', '_H')
@@ -121,12 +130,16 @@ def change_eliminate_Head(datar):
   datar = datar.drop(columns=filtered_columns)
   return datar
 
+
+
 #eliminate specific types of features (here Right Hand Features)
 def change_eliminate_RightHand(datar):
   filtered_columns = datar.filter(like='Right', axis=1).columns
   datar = datar.drop(columns=filtered_columns)
   return datar
-  
+
+
+
 #eliminate specific types of features (here Emotion Facial Expression Features)
 def change_nameFacialEexpression(datar,f):
   for i in range(64,0,-1):
@@ -136,6 +149,8 @@ def change_nameFacialEexpression(datar,f):
       datar.columns=datar.columns.str.replace(s1,s2)
   datar=datar.drop(f,axis=1)
   return datar
+
+
 
 #data preprocess for app adversary
 def data_preProcess(d_h,g_id,target):
@@ -176,6 +191,7 @@ def dT(d_h,rt):
     #round_2=test data
   return d_train, d_test
 
+
 #stradified train test split/considering subsession
 def stratified_train_test_split(X, Y, M):
     X=np.array(X)
@@ -196,6 +212,7 @@ def stratified_train_test_split(X, Y, M):
         splits[i][0] = (range(len(X)), [])
         X_train, Y_train = X, Y
     return X_train,Y_train
+
 
 #train_test_split
 def train_test(d_h,M,rt,target):
@@ -222,6 +239,7 @@ def index_dev(arr):
   arr=np.array(arr)
   ind = np.where(arr[:-1] != arr[1:])[0] + 1
   return ind
+
 
 def divide_pred(arr,points):
   #points=mdfs(points)
@@ -251,6 +269,8 @@ def final_label(new_arr, n):
         label[i] = np.argmax(counts)
     return label
 '''
+
+#get final label and final blocks
 def final_label(new_arr, n):
     label = np.zeros(n+1, dtype=int)  # Ensure label array is of int data type
     for i in range(n+1):
@@ -267,6 +287,8 @@ def final_Block(new_arr,n):
     #print(counts,label[i])
   return label
 
+
+#concatenate two numpy arrays
 def concatenate_arrays(new_preds, new_pred1):
     result = []
     for a1, a2 in zip(new_preds, new_pred1):
@@ -279,28 +301,40 @@ def concatenate_arrays(new_preds, new_pred1):
             result.append(a2.astype(np.object))  # Convert to object dtype
     return result
 
+
+
+#define all emotion action features
+#Facial data only
 def Emotion_units():
         #Emotion Units
     #smile
     f_smile=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w33_max',
     'w33_min','w33_mean','w33_std','w33_med','w34_max',
     'w34_min','w34_mean','w34_std','w34_med','w6_max','w6_min','w6_mean','w6_std','w6_med','w5_max','w5_min','w5_mean','w5_std','w5_med']
+    
     #surprise
     f_surprise=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w58_max','w58_min','w58_mean','w58_std','w58_med','w59_max','w59_min',
                 'w59_mean','w59_std','w59_med','w60_max','w60_min','w60_mean','w60_std','w60_med','w61_max','w61_min','w61_mean','w61_std','w61_med',
     'w23_max','w23_min','w23_mean','w23_std','w23_med','w24_max','w24_min','w24_mean','w24_std','w24_med','w25_max','w25_min',
-    'w25_mean','w25_std','w25_med']   #1 + 2 + 5 + 26. #(23,24)+ (58,59)+ (60,61)+ (25)
+    'w25_mean','w25_std','w25_med']
+    
+    
+     #1 + 2 + 5 + 26. #(23,24)+ (58,59)+ (60,61)+ (25)
     #Anger=4 + 5 + 7 + 23  (1,2)+ (60,61)+ (29,30)+ (49,50)
     f_anger=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w1_min','w1_mean','w1_std','w1_med','w1_max',
     'w2_min','w2_mean','w2_std','w2_med','w60_max','w60_min','w60_mean','w60_std','w60_med','w61_max','w61_min','w61_mean','w61_std','w61_med',
     'w29_max','w29_min','w29_mean','w29_std','w29_med',
     'w30_max','w30_min','w30_mean','w30_std','w30_med','w49_max','w49_min','w49_mean','w49_std','w49_med','w50_max','w50_min','w50_mean','w50_std','w50_med']
+    
+    
     #Sadness 1 + 4 + 15; (23,24)+ (1,2)+ (31,32)
     f_sadness=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w1_max',
     'w1_min','w1_mean','w1_std','w1_med','w2_max','w2_min','w2_mean','w2_std','w2_med',
     'w23_max','w23_min','w23_mean','w23_std','w23_med','w24_max','w24_min','w24_mean','w24_std','w24_med',
     'w31_max','w31_min','w31_mean','w31_std','w31_med','w32_max','w32_min','w32_mean','w32_std','w32_med',
     ]
+    
+    #Fear
     f_fear=['user_id', 'game_id', 'round_id', 'device_id', 'block_id',
             'w23_max','w23_min','w23_mean','w23_std','w23_med','w24_max','w24_min','w24_mean','w24_std','w24_med',
             'w58_max','w58_min','w58_mean','w58_std','w58_med','w59_max','w59_min','w59_mean','w59_std','w59_med',
@@ -309,20 +343,24 @@ def Emotion_units():
             'w29_max','w29_min','w29_mean','w29_std','w29_med','w30_max','w30_min','w30_mean','w30_std','w30_med',
             'w43_max','w43_min','w43_mean','w43_std','w43_med','w44_max','w44_min','w44_mean','w44_std','w44_med',
             'w25_max','w25_min','w25_mean','w25_std','w25_med']
-
+    
+    
+    #Disgust
     f_disgust=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w31_max',
     'w31_min','w31_mean','w31_std','w31_med','w32_max','w32_min','w32_mean','w32_std','w32_med','w52_max','w52_min','w52_mean','w52_std','w52_med',
                'w53_max','w53_min','w53_mean','w53_std','w53_med', 'w56_max','w56_min','w56_mean','w56_std','w56_med',
                'w57_max','w57_min','w57_mean','w57_std','w57_med']
+    
+    #contempt
     f_contempt=['user_id', 'game_id', 'round_id', 'device_id', 'block_id','w33_max',
     'w33_min','w33_mean','w33_std','w33_med','w12_max','w12_min','w12_mean','w12_std','w12_med','w11_max','w11_min','w11_mean','w11_std','w11_med']
-
+    
     f_imp=['w51_max',
     'w51_min','w51_mean','w51_std','w51_med','w28_max','w28_min','w28_mean','w28_std','w28_med','w13_max','w13_min','w13_mean','w13_std','w13_med',
            'w14_max','w14_min','w14_mean','w14_std','w14_med']
 
 
-    #All
+    # combine All
     common_words = set(f_smile).intersection(f_anger, f_sadness)
     all_words = set(f_smile + f_anger + f_sadness+f_surprise+f_fear+f_disgust)
     all_words1=set(f_smile + f_anger + f_sadness+f_surprise+f_fear+f_disgust+f_contempt+f_imp)
@@ -332,11 +370,13 @@ def Emotion_units():
     emo=[f_smile,f_surprise,f_anger,f_disgust,f_fear,f_sadness, f]
     return emo, f1
 
+
 #feature Engineering for face data/this will be more automated with more dataset
 #take only the features based on emotion recognition/ smile=6+12
 def Emotion(d,f):
   d=d[f]
   return d
+
 
 #emotion process
 def DataE(D,f):
@@ -348,11 +388,16 @@ def DataE(D,f):
   D=dE
   return D
 
+
+
 #app grouping
+#define name of each app group
 def app_groups_name():
      gname=['social','flight','Rhy','golf','IN','KW','Rhy','shoot','teleport']
      return gname
 
+#put each app as a list according to app group
+#defines in BehaVR
 def app_grouping(app_group):
     if (app_group=='social'):
         g=[12,15,18]
@@ -371,6 +416,8 @@ def app_grouping(app_group):
     elif (app_group=='teleport'): #Teleportation
         g=[4,8]
     return g
+
+
 
 #concatenate different apps data or user can just use one apps data, in that case len(g1) should be 1
 def f_data(g1,d1,target):

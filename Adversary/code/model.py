@@ -35,6 +35,8 @@ def RF_tuning(X_train,y_train,cv):
     print('Best hyperparameters:',  rand_search.best_params_)
     return best_rf
 
+
+
 #Choose XGB Model
 def XB_tuning(X_train,y_train,cv):
   # Define a grid of hyperparameters to search
@@ -59,6 +61,8 @@ def XB_tuning(X_train,y_train,cv):
   best_xgb_model = xgb.XGBClassifier(**best_params)
   return best_xgb_model
 
+
+#train final model for identification
 def final_model(Model,SG, cross_val, X_train,y_train):
     if Model=='RF':
             print('Chosen model is Random Forest')
@@ -86,8 +90,10 @@ def final_model(Model,SG, cross_val, X_train,y_train):
             model=XB_tuning(X_train,y_train,cross_val)
             model.fit(np.array(X_train),y_train)
     return model
-    
-#Get Top features
+
+
+
+#Get Top features using Feature importance score
 def Top_Features(final_model,app_id,f_n,X_train_app):
         # Define the list to store feature importance data
         feature_importance_final = []
