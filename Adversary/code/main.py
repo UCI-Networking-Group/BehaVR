@@ -81,25 +81,63 @@ g_id=list(range(1, args.num_app + 1)) #game_id represents 1 to 20 app for our ex
 #user_initialization
 num_user=args.num_user
 sk = list(range(1, num_user + 1))
-rp=args.ratio #block length
+
+#block length ratios
+rp=args.ratio #choose block length, 0=0.5, 1=1, 2=2
+
+# Initialize an array to store the ratio values
+rp_arr=list(range(1, rp))
+
+# Initialize an array to hold the index values of maximum accuracy
+index_rp=np.zeros(rp_arr)
+
+#block length ratios for sensor fusion
 rp1=args.r1
 rp2=args.r2
+
+#Boolean parameter to determine if all users are included in the consideration
 rt=args.rt
+
+# Argument to specify the type of adversary to be used
 adv=args.adv
-SG=args.SG #Define Sensor Group
+
+# Define the sensor group to be used
+SG=args.SG
+
+#define the sensor group for sensor fusion
 SG1=args.SG1 #Define 1st sensor group if perform sensor fusion
 SG2=args.SG2 #Define 2nd sensor group if pereform sensor fusion
-M=args.M#controlling subsession length
-n_emo=args.n_emo #how many emotional state we are considering
-f_n=args.f_n  #number of top features
+
+#controlling subsession length
+M=args.M
+
+# Specify the number of emotional states being considered
+n_emo=args.n_emo
+
+#number of top features
+f_n=args.f_n
+
+#number of cross validation in model training
 cross_val=args.cross_val
-target=args.target #target class
-OW=args.OW #Open-World Settings
-feature_elim=args.feature_elim #feature_elim enabled/disabled
+
+#target class
+target=args.target
+
+#Open-World Settings
+OW=args.OW
+
+#feature_elim enabled/disabled
+feature_elim=args.feature_elim
+
+#model initialization
 Model=args.Model #Type of models
+
+# Initialize app grouping settings
 gname=app_groups_name() #call app grpups
 acc=np.zeros((len(g_id),args.ratio)) # attack accuracy for different ratio
 accGroup=np.zeros((len(gname),len(gname)))
+
+# Array parameters for storing identification accuracy values in different stages
 final_labels=np.zeros((len(g_id),num_user))
 accBar=np.zeros(len(g_id)) #attack accuracy
 models=[] #save each models for each app
@@ -108,16 +146,16 @@ acc_emotion=np.zeros((len(g_id),n_emo))
 output_dir = args.output_dir #output directory
 final_features=[]
 
-#data=Final_feature(SG) #Call the input proccessed data
 
-#Adversarial settings=App adversary
-if (adv=='App'):
-    if feature_elim==True: #if we eliminate important features and see identification accuracy
-        data=Feature_elimination(SG)
-    else: #use all features obtained after processing & feature Engineering
-        data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+#calculate the optimizationratio
+# Uses the default block ratio length since optimization is not applied
+#calculate optimization ratio from app adversaries
+if len(rp_arr)==1:
+    opt_rp=rp
+else:
+    data=Final_feature(SG,OW) #call input processed data (containing final features per block)
     for j in range(len(g_id)):
-      for i in range(1):
+      for i in range(rp):
          d=data[rp]
          d_h=data_preProcess(d,g_id[j],args.target)
          print("check unique users id:",np.unique(d_h['user_id'].values))
@@ -150,6 +188,59 @@ if (adv=='App'):
       final_features.append(feature)
       
       accBar[j]=np.max(acc[j,:]) #final identification accuracy
+      index_rp[j]=np.argmax(acc[j, :])
+    print("final identification accuracy for app a_"+str(j+1)+" is "+str(accBar[j])+"\%")
+    values, counts = np.unique(a, return_counts=True)
+    opt_rp = values[np.argmax(index_rp)]
+    print("Optimized block length ratio:", opt_rp)
+
+
+
+
+#data=Final_feature(SG) #Call the input proccessed data
+
+#Adversarial settings=App adversary
+if (adv=='App'):
+    if feature_elim==True: #if we eliminate important features and see identification accuracy
+        data=Feature_elimination(SG)
+    else: #use all features obtained after processing & feature Engineering
+        data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+    for j in range(len(g_id)):
+    # Selects the optimal block ratio length based on the input data
+      d=data[opt_rp]
+      d_h=data_preProcess(d,g_id[j],args.target)
+      print("check unique users id:",np.unique(d_h['user_id'].values))
+      print("load train/test dataset")
+      X_train,y_train,X_test,y_test,X_val,y_val=train_test(d_h,M,rt,target)
+      print('size of training data',X_train.shape)
+      sd=index_dev(y_test) #find the 'sub session' division point
+      #select Model and change data according to model type
+      if Model=='RF':
+        print('Chosen model is Random Forest')
+      elif Model=='XGB':
+        print('Chosen model is Xboost')
+        le = LabelEncoder()
+        y_train = le.fit_transform(y_train)
+        y_test=le.fit_transform(y_test)
+         #call final model
+      model= final_model(Model,SG,cross_val, X_train,y_train)
+
+      models.append(model) #save each model for each app
+      
+      #calculate prediction
+      y_pred = model.predict(np.array(X_test)) #prediction for each block
+      new_pred=np.array(divide_pred(y_pred,sd),dtype=object) #divided prediction
+      true_preds=np.array(divide_pred(y_test,sd),dtype=object)
+      true_labels=final_label(true_preds,len(sd))
+
+      #calculate final labels
+      final_labels[j,:]=final_label(new_pred,len(sd)) #calculate final label based on 'sub session'
+      accBar[j]=accuracy_score(true_labels, final_labels[j,:])*100 #accuracy per app per ratio
+      
+      #collect top features
+      feature=Top_Features(model,g_id[j],f_n,X_train)
+      final_features.append(feature)
+      accBar[j]=np.max(acc[j,:]) #final identification accuracy
       print("final identification accuracy for app a_"+str(j+1)+" is "+str(accBar[j])+"\%")
       app_no='a_'+str(g_id[j])
       accuracy=str(accBar[j])+'%'
@@ -162,7 +253,7 @@ elif (adv=='emotion'): #adversary consider particular emotions for identificatio
       for i in range(n_emo):
          emo,_=Emotion_units()
          fE=emo[i]
-         d1=data[rp]
+         d1=data[opt_rp]
          d=Emotion(d1,fE) #consider features w.r.t an emotion
          d_h=data_preProcess(d,g_id[j],args.target)
          print("check unique users id:",np.unique(d_h['user_id'].values))
@@ -259,8 +350,8 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
 
 #loop over n number of apps
     for j in range(len(g_id)):
-        d=data[rp] #ratio of FBA=1
-        d1=dataOW[rp]
+        d=data[opt_rp] #ratio of FBA=1
+        d1=dataOW[opt_rp]
         #preprocess data
         d_h=data_preProcess(d,g_id[j],target)
         d_h1=data_preProcess(d1,g_id[j],target)
@@ -300,7 +391,7 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
 #Adversarial settings=Zero day settings
 elif (adv=='Zero-Day'): #Zero Day scenarios
     data=Final_feature(SG,OW)#call original input data for training
-    d=data[rp] #data with optimized ratio
+    d=data[opt_rp] #data with optimized ratio
     for j in range(len(gname)):
          models=[]
          g=app_grouping(gname[j])
