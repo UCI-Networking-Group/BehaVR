@@ -149,7 +149,7 @@ final_features=[]
 
 #calculate the optimizationratio
 # Uses the default block ratio length since optimization is not applied
-#calculate optimization ratio from app adversaries
+#calculate optimization ratio (for block length) from app adversaries
 if len(rp_arr)==1:
     opt_rp=rp
 else:
@@ -189,9 +189,11 @@ else:
       
       accBar[j]=np.max(acc[j,:]) #final identification accuracy
       index_rp[j]=np.argmax(acc[j, :])
+    
+    #store the optimized ratio (block length) that provides best identification accuracy
     print("final identification accuracy for app a_"+str(j+1)+" is "+str(accBar[j])+"\%")
-    values, counts = np.unique(a, return_counts=True)
-    opt_rp = values[np.argmax(index_rp)]
+    values, counts = np.unique(index_rp, return_counts=True)
+    opt_rp = values[np.argmax(counts)]
     print("Optimized block length ratio:", opt_rp)
 
 
@@ -235,12 +237,15 @@ if (adv=='App'):
 
       #calculate final labels
       final_labels[j,:]=final_label(new_pred,len(sd)) #calculate final label based on 'sub session'
+      
+      #store identification accuracy for each app
       accBar[j]=accuracy_score(true_labels, final_labels[j,:])*100 #accuracy per app per ratio
       
       #collect top features
       feature=Top_Features(model,g_id[j],f_n,X_train)
       final_features.append(feature)
-      accBar[j]=np.max(acc[j,:]) #final identification accuracy
+      
+      #print and store identification accuracy for each of all apps
       print("final identification accuracy for app a_"+str(j+1)+" is "+str(accBar[j])+"\%")
       app_no='a_'+str(g_id[j])
       accuracy=str(accBar[j])+'%'
@@ -419,7 +424,7 @@ elif (adv=='Zero-Day'):
                 y_test=le.fit_transform(y_test)
              #call final model
             model= final_model(Model,SG,cross_val, X_train,y_train)
-            models.append(model)
+            models_zd.append(model)
         
         ## execute if there is more than one application in the group
          else:
@@ -453,7 +458,7 @@ elif (adv=='Zero-Day'):
                     
                  #call final model
                 model= final_model(Model,SG,cross_val, X_train,y_train)
-                models.append(model)
+                models_zd.append(model)
                 
          print('print length of zd models',len(models))
          #collect top features
@@ -464,8 +469,8 @@ elif (adv=='Zero-Day'):
          for i in range(len(gname)):
             
             # Initialize accuracy array to store evaluations of the ith model in the jth app group
-            acc_i=np.zeros(len(models))
-            for k1 in range(len(models)):
+            acc_i=np.zeros(len(models_zd))
+            for k1 in range(len(models_zd)):
                 #If there is only one app in app group or data coming from similar app group
                 if(len(g))==1:
                     d_h=data_preProcess(d,g[0],target)
@@ -482,7 +487,7 @@ elif (adv=='Zero-Day'):
                 sd=index_dev(y_test)
                 
                 # Calculate predictions for each model across all apps in every app group
-                y_pred = models[k1].predict(np.array(X_test)) #prediction for each block
+                y_pred = models_zd[k1].predict(np.array(X_test)) #prediction for each block
                 new_pred=np.array(divide_pred(y_pred,sd),dtype=object) #divided prediction
                 true_preds=np.array(divide_pred(y_test,sd),dtype=object)
                 true_labels=final_label(true_preds,len(sd))
@@ -491,6 +496,7 @@ elif (adv=='Zero-Day'):
                 final=final_label(new_pred,len(sd)) #calculate final label based on 'sub session'
                 acc_i[k1]=accuracy_score(true_labels, final)*100
             print("accuracy for each app:", acc_i)
+            
             #accuracy per app group for each of all app group
             accGroup[j,i]=np.average(acc_i)
             
