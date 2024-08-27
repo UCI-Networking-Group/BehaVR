@@ -389,13 +389,21 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
         accfinal.append((app_no,acc_emotion[j,:]))
 
 #Adversarial settings=Zero day settings
-elif (adv=='Zero-Day'): #Zero Day scenarios
+elif (adv=='Zero-Day'):
+    #input data
     data=Final_feature(SG,OW)#call original input data for training
     d=data[opt_rp] #data with optimized ratio
+    
     for j in range(len(gname)):
-         models=[]
+        #initialize zero day models
+         models_zd=[]
+         
+         # call jth app group
          g=app_grouping(gname[j])
-         if(len(g))==1: #If there is only one app in app group
+         
+         #train and evaluate adversaries
+         # execute if there is only one application in the group
+         if(len(g))==1:
             d_h=data_preProcess(d,g[0],target)
             print("check unique users id:",np.unique(d_h['user_id'].values))
             print("load train/test dataset")
@@ -413,19 +421,27 @@ elif (adv=='Zero-Day'): #Zero Day scenarios
             model= final_model(Model,SG,cross_val, X_train,y_train)
             models.append(model)
         
-        #if there is more than one app in the following group
+        ## execute if there is more than one application in the group
          else:
+         # Loop through the apps in each app group
             for k in range(len(g)):
+                # List all apps in the training data, excluding one specific app
                 g_k=g[:k] + g[k+1:]
                 print('the app/apps that participate in training is:',g_k)
+                
+                #preprocess data for training
                 d_h=f_data(g_k,d,target)
                 print("check unique users id:",np.unique(d_h['user_id'].values))
                 print("load train/test dataset")
-                #X_train,y_train,_,_,X_val,y_val=train_test(d_h,M,rt,target)
+                
+                #use all sessions data as training data
                 X_train1,y_train1,X_train2,y_train2,X_val,y_val=train_test(d_h,M,rt,target)
+                
+                #merge and get final training data
                 X_train = np.concatenate((X_train1, X_train2), axis=0)
                 y_train = np.concatenate((y_train1, y_train2), axis=0)
                 print('size of training data',X_train.shape)
+                
                  #select Model and change data according to model type
                 if Model=='RF':
                     print('Chosen model is Random Forest')
@@ -434,45 +450,64 @@ elif (adv=='Zero-Day'): #Zero Day scenarios
                     le = LabelEncoder()
                     y_train = le.fit_transform(y_train)
                     y_test=le.fit_transform(y_test)
+                    
                  #call final model
                 model= final_model(Model,SG,cross_val, X_train,y_train)
                 models.append(model)
+                
          print('print length of zd models',len(models))
          #collect top features
          #feature=Top_Features(model,gname[j],f_n,X_train)
          #final_features.append(feature)
          
-         for i in range(len(gname)): #evaluate all groups apps using data
-            g=app_grouping(gname[i])
+         #evaluate all groups apps using data
+         for i in range(len(gname)):
+            
+            # Initialize accuracy array to store evaluations of the ith model in the jth app group
             acc_i=np.zeros(len(models))
             for k1 in range(len(models)):
-                if(len(g))==1: #If there is only one app in app group or data coming from similar app group
+                #If there is only one app in app group or data coming from similar app group
+                if(len(g))==1:
                     d_h=data_preProcess(d,g[0],target)
+                
+                # Check if the app group is the same as the training app group
                 elif(i==j):
                     d_h=data_preProcess(d,g[k1],target)
-                else: #if there is more than one app
+                    
+                #if there is more than one app
+                else:
                     d_h=f_data(g,d,target)#evaluate for each of all app groups data on jth app group model
                 _,_,X_test,y_test,_,_=train_test(d_h,M,rt,target)
                 print('size of test data',X_test.shape)
                 sd=index_dev(y_test)
+                
+                # Calculate predictions for each model across all apps in every app group
                 y_pred = models[k1].predict(np.array(X_test)) #prediction for each block
                 new_pred=np.array(divide_pred(y_pred,sd),dtype=object) #divided prediction
                 true_preds=np.array(divide_pred(y_test,sd),dtype=object)
                 true_labels=final_label(true_preds,len(sd))
-            #true_labels=final_label(np.array(divide_pred(y_test,sd),dtype=object).astype(int),len(sd))
+
+                #final labe (per user)
                 final=final_label(new_pred,len(sd)) #calculate final label based on 'sub session'
                 acc_i[k1]=accuracy_score(true_labels, final)*100
             print("accuracy for each app:", acc_i)
-            accGroup[j,i]=np.average(acc_i)#accuracy_score(true_labels, final)*100 #accuracy per app group for each of all app group
+            #accuracy per app group for each of all app group
+            accGroup[j,i]=np.average(acc_i)
             
          print("final identification accuracy for "+gname[j]+" app group is "+str(accGroup[j,:])+"\%")
          accfinal.append((gname[j], accGroup[j,:]))
             
          
 # Save to file in the output directory
+#directory for identification accuracy
 output_file = os.path.join(output_dir, 'output_'+Model+'_'+adv+'_adversary'+'.txt')
+
+#directory for top features
 feature_file = os.path.join(output_dir, 'feature_'+Model+'_'+adv+'_adversary'+'.txt')
-print(output_file)
+
+#check directory path
+print("check directory path",output_file)
+print("check directory path",feature_file)
 
 #np.savetxt(output_file, accfinal, header='Attack Accuracy for each app', comments='')
 #save identification accuracy 
