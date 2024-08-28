@@ -1,7 +1,6 @@
 # README.md
 
-##Content
-
+## Overview
 This section demonstrates how the raw sensor data has been processed to convert time series data into feature blocks, laying the groundwork for subsequent feature engineering. 
 
 ## Dependencies
@@ -11,7 +10,6 @@ This section demonstrates how the raw sensor data has been processed to convert 
     - numpy (version 1.21.6)
     - pandas (version 1.2.3)
     - matplotlib (version 3.3.4)
-
 
 
 ## Code 
