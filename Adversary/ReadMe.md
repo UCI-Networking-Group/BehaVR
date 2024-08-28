@@ -13,6 +13,7 @@ Please see the `requirement.txt` file for all the dependencies.
   - `model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
   - `preprocess.py`: Contains necessary functions for data preprocessing, feature engineering, loading train/test data, and adversarial conditions.
   - `main.py`: Main file that generates output results depending on the type of adversaries. `main.py` contains all the variable parameters to run the model in different settings.
+  - `plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
   - `sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
 To run the code, please run the commands on your terminal based on the type of BehaVR adversary and sensor group. For example, to run an app adversary model on the Facial Expression (FE) sensor group on the first 15 apps, where your chosen model is Random Forest, run the following command in the terminal:
