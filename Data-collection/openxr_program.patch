@@ -1,0 +1,132 @@
+Author: Rahmadi Trimananda <rtrimana@uci.edu>
+Description: Tap onto VR sensor data in ALXR
+
+--- a/alvr/openxr-client/alxr-engine-sys/cpp/ALVR-OpenXR-Engine/src/alxr_engine/openxr_program.cpp
++++ b/alvr/openxr-client/alxr-engine-sys/cpp/ALVR-OpenXR-Engine/src/alxr_engine/openxr_program.cpp
+@@ -2400,6 +2400,30 @@
+             controller.boneRootPose.position    = ToALXRVector3f(palmPos);            
+             controller.linearVelocity  = { 0,0,0 };
+             controller.angularVelocity = { 0,0,0 };
++
++            // TODO: Tap onto sensor value
++            std::string hand_id;
++            if (hand == Side::LEFT) {
++                hand_id = "left_hand:";
++            } else { // hand == Side::RIGHT
++                hand_id = "right_hand:";
++            }
++            std::string hand_data = hand_id + " " + std::to_string(time);
++            for (size_t jointIdx = 0; jointIdx < XR_HAND_JOINT_COUNT_EXT; jointIdx++)
++            {
++                const XrMatrix4x4f& joint = oculusOrientedJointPoses[jointIdx];
++                XrQuaternionf jointRot;
++                XrVector3f jointPos;
++                XrMatrix4x4f_GetRotation(&jointRot, &joint);
++                XrMatrix4x4f_GetTranslation(&jointPos, &joint);
++                auto boneRot = ToALXRQuaternionf(jointRot);
++                auto bonePos = ToALXRVector3f(jointPos);             
++                hand_data = hand_data + "," + std::to_string(boneRot.x) + "," + std::to_string(boneRot.y) + 
++                        "," + std::to_string(boneRot.z) + "," + std::to_string(boneRot.w) + 
++                        "," + std::to_string(bonePos.x) + "," + std::to_string(bonePos.y) + 
++                        "," + std::to_string(bonePos.z);
++            }
++            Log::Write(Log::Level::Info, Fmt(hand_data.c_str()));
+         }
+     }
+ 
+@@ -3189,6 +3213,14 @@
+         // info.HeadPose_LinearVelocity    = ToALXRVector3f(hmdSpaceLoc.linearVelocity);
+         // info.HeadPose_AngularVelocity   = ToALXRVector3f(hmdSpaceLoc.angularVelocity);
+ 
++        // TODO: Tap onto sensor data
++        Log::Write(Log::Level::Info, Fmt("headset: %" PRIu64 ","
++            "%f,%f,%f,%f,"
++            "%f,%f,%f\n",
++            info.targetTimestampNs,
++            info.headPose.orientation.x, info.headPose.orientation.y, info.headPose.orientation.z, info.headPose.orientation.w, 
++            info.headPose.position.x, info.headPose.position.y, info.headPose.position.z));
++
+         const auto lastPredicatedDisplayTime = m_lastPredicatedDisplayTime.load();
+         const auto& inputPredicatedTime = clientPredict ? predicatedDisplayTimeXR : lastPredicatedDisplayTime;
+ 
+@@ -3199,6 +3231,24 @@
+             newContInfo.pose            = ToALXRPosef(spaceLoc.pose);
+             newContInfo.linearVelocity  = ToALXRVector3f(spaceLoc.linearVelocity);
+             newContInfo.angularVelocity = ToALXRVector3f(spaceLoc.angularVelocity);
++
++            std::string hand_id;
++            if (hand == Side::LEFT) {
++                hand_id = "left_controller:";
++            } else { // hand == Side::RIGHT
++                hand_id = "right_controller:";
++            }
++            // TODO: Tap onto sensor data
++            Log::Write(Log::Level::Info, Fmt("%s %" PRIu64 ","
++                "%f,%f,%f,%f,"
++                "%f,%f,%f,"
++                "%f,%f,%f,"
++                "%f,%f,%f\n",
++                hand_id.c_str(), info.targetTimestampNs,
++                newContInfo.pose.orientation.x, newContInfo.pose.orientation.y, newContInfo.pose.orientation.z, newContInfo.pose.orientation.w, 
++                newContInfo.pose.position.x, newContInfo.pose.position.y, newContInfo.pose.position.z,
++                newContInfo.linearVelocity.x, newContInfo.linearVelocity.y, newContInfo.linearVelocity.z,
++                newContInfo.angularVelocity.x, newContInfo.angularVelocity.y, newContInfo.angularVelocity.z));
+         }
+ 
+         PollHandTrackers(inputPredicatedTime, info.controller);
+@@ -3275,6 +3325,15 @@
+ 
+                 newPacket.isEyeFollowingBlendshapesValid = static_cast<std::uint8_t>(expressionWeights.status.isEyeFollowingBlendshapesValid);
+                 newPacket.expressionType = ALXRFacialExpressionType::FB;
++
++                // TODO: Tap onto sensor data
++                std::string face_data = "face: " + std::to_string(ptime) + "," + 
++                    std::to_string(expressionWeights.confidences[0]) + "," + 
++                    std::to_string(expressionWeights.confidences[1]);
++                for(int i = 0; i < 64; i++) {
++                    face_data = face_data + "," + std::to_string(expressionWeights.weights[i]);
++                }
++                Log::Write(Log::Level::Info, Fmt(face_data.c_str()));
+             }
+         }
+ 
+@@ -3316,6 +3375,20 @@
+                     newPacket.eyeGazePoses[idx] = gaze.gazePose;
+                     newPacket.isEyeGazePoseValid[idx] = static_cast<std::uint8_t>(gaze.isValid);
+                 }
++
++                // TODO: Tap onto sensor data
++                Log::Write(Log::Level::Info, Fmt("left_eye: %" PRIu64 ",%s,"
++                    "%f,%f,%f,%f,"
++                    "%f,%f,%f\n",
++                    ptime, eyeGazes.gaze[0].isValid == 1 ? "True" : "False", 
++                    eyeGazes.gaze[0].gazePose.orientation.x, eyeGazes.gaze[0].gazePose.orientation.y, eyeGazes.gaze[0].gazePose.orientation.z, eyeGazes.gaze[0].gazePose.orientation.w, 
++                    eyeGazes.gaze[0].gazePose.position.x, eyeGazes.gaze[0].gazePose.position.y, eyeGazes.gaze[0].gazePose.position.z));
++                Log::Write(Log::Level::Info, Fmt("right_eye: %" PRIu64 ",%s,"
++                    "%f,%f,%f,%f,"
++                    "%f,%f,%f\n",
++                    ptime, eyeGazes.gaze[1].isValid == 1 ? "True" : "False", 
++                    eyeGazes.gaze[1].gazePose.orientation.x, eyeGazes.gaze[1].gazePose.orientation.y, eyeGazes.gaze[1].gazePose.orientation.z, eyeGazes.gaze[1].gazePose.orientation.w, 
++                    eyeGazes.gaze[1].gazePose.position.x, eyeGazes.gaze[1].gazePose.position.y, eyeGazes.gaze[1].gazePose.position.z));
+             }
+         }
+     }
+@@ -3328,11 +3401,15 @@
+     };
+     void PollFaceEyeTracking(const XrTime& ptime)
+     {
+-        if (ptime == 0 || m_vrcftProxyServer == nullptr ||
+-            !m_vrcftProxyServer->IsConnected())
++        //if (ptime == 0 || m_vrcftProxyServer == nullptr ||
++        //    !m_vrcftProxyServer->IsConnected())
++        //    return;
++        if (ptime == 0 || m_vrcftProxyServer == nullptr)
+             return;
++        // TODO: Tap onto sensor data
++        // We disable the need for the VRCFT proxy server
+         PollFaceEyeTracking(ptime, newFTPacket);
+-        m_vrcftProxyServer->SendAsync(newFTPacket);
++        //m_vrcftProxyServer->SendAsync(newFTPacket);
+     }
+ 
+     virtual inline void PollFaceEyeTracking(ALXRFacialEyePacket& newPacket) override
