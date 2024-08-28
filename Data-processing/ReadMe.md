@@ -1,10 +1,8 @@
 # README.md
-## Environment
-- PC:
-    - OS(Windows 10 Pro 64-bits)
-    - Processor(Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz(8 CPUs), ~2.0GHz)
-    - Memory(16384MB RAM)
-- Dependencies: 
+##Content
+This section demonstrates how the raw sensor data has been processed to convert time series data into feature blocks, laying the groundwork for subsequent feature engineering. 
+
+## Dependencies
     - Anaconda3 (version 1.7.2) 
     - Jupyter Notebook (version 6.1.7)
     - Python (version 3.7.4)
@@ -14,8 +12,8 @@
 
 
 
-## Code
-### This section shows how the authors processed the raw sensor data before fed into the identification model. Below are listed in folder/file id.  
+## Code 
+Below are listed in folder/file id. 
 1. REG: Reorganize the data files, from folder per user per game per round to per sensor group.
 2. PROCESSING: Process four different sensor group data using two different block division methods.
     1. Four different sensor groups include body motion(SG1), eye gaze(SG2), hand joints(SG3), facial expression(SG4).

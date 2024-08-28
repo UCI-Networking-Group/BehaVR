@@ -1,6 +1,6 @@
 ## Content
 
-This folder includes code for feature engineering and fetaure selection, compare data processing method-FBL and FTN, optimze and train model, design and evaluating BehaVR adversaries, analyzing top features, etc.
+This folder contains code for feature engineering and feature selection, comparing data processing methods (FBL and FTN), optimizing and training models, designing and evaluating BehaVR adversaries, analyzing top features, etc.
 
 ## Dependencies
 Please see the `requirement.txt` file for all the dependencies.
