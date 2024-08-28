@@ -1,5 +1,7 @@
 # README.md
+
 ##Content
+
 This section demonstrates how the raw sensor data has been processed to convert time series data into feature blocks, laying the groundwork for subsequent feature engineering. 
 
 ## Dependencies
