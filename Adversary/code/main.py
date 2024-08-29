@@ -27,7 +27,7 @@ parser.add_argument('--adv', type=str, help='Type of Adversary',default='App')
 parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',default='BM')
 
 #add arguments to choose FBA or FTN method
-parser.add_argument('--data_process', type=str, help='FBA or FTN',default='FBA')
+parser.add_argument('--data_process', type=str, help='FBA or FBL',default='FBA')
 
 #If feature elimination setting (evaluate by eliminating certain types of features, example Headset features for BM) is true, set True, otherwise False
 parser.add_argument('--feature_elim', type=bool, help='If feature elimination setting is true',default=False)

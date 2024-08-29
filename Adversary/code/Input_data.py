@@ -12,7 +12,7 @@ from preprocess import change_nameFace, change_nameF, change_nameH, change_nameE
 def Final_feature(SG,OW,Data_process):
     #data1=data with block ratio 1,data2=data with block ratio 0.5, data_05=data with block ratio 2
     
-    #Define the data processing folder based on method FBA or FTN
+    #Define the data processing folder based on method FBA or FBL
     base_dir = f'.../VR/data/BM/{Data_process}/'
 
     #Body Motion Data
