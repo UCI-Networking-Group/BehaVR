@@ -232,6 +232,8 @@ def train_test(d_h,M,rt,target,P):
   #print(X_test.shape)
   #X_test,x,y_test,y=train_test_split(X_test, y_test, test_size=1, random_state=0,shuffle=False)
   #X_test,y_test=split(X_test,y_test,20)
+  
+  # M controls the portion of test data used for evaluation; M=1 uses all test data, M=3 uses 33.33%, and so on
   X_test,y_test = stratified_train_test_split(X_test,y_test,M)
   X_train,X_val,y_train,y_val=train_test_split(X_train, y_train, test_size=0.1, random_state=0)
   #print(X_test.shape)
@@ -445,6 +447,7 @@ def f_data(g1,d1,target):
         d_h = pd.concat(df_list, axis=0)
     d_h=d_h.sort_values('user_id')
     return d_h
+
 
 
 

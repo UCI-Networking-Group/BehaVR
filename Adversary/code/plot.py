@@ -34,11 +34,36 @@ num_apps = 20 #number of total apps
 x_axis = [f'$a_{i+1}$' for i in range(num_labels)]
 num=range(1,num_apps)
 
+#identification accuracy for app adversary (we use FBA for BehaVR)
+acc=open('path/').readline().strip().split(',')
+
+#plot FBL vs FBA to compare between both methods performance
+#load FBL accuracy
+accFBL=open('path/').readline().strip().split(',')
+
+#initialize the plot
+test0 = plt.figure()
+
+#plot
+plt.plot(x_axis,accFBL,color='blue',marker='o',linestyle = 'None', label='FBL')
+plt.plot(x_axis,acc,color='red',marker='o',linestyle = 'None',label='FBA')
+plt.vlines(x_axis, accFBL, acc, 'blue',linestyles ='--', alpha=.5,linewidth=.8)
+plt.ylim([50,105])
+plt.xlabel('App No.',fontsize=18)
+plt.ylabel("Identification Accuracy",fontsize=18)
+#xticks = ['data5B','data2B','data1B','data.5B']
+#plt.xticks(num, xticks)
+plt.legend(loc=4,fontsize=15)
+
+#save figure
+directory='.../VR/BehaVR/results/graphs'
+filename='AppAdv_Acc_motion20_cmp_block.pdf'
+filepath = os.path.join(directory, filename)
+test0.savefig(filepath)
+
 #plot identification accuracy comparisons for Body Motion (with and without headset features)
 #load necessary results
-acc=open('path/').readline().strip().split(',')
 accController=open('path/').readline().strip().split(',')
-
 
 #initialize plot
 test1 = plt.figure()
@@ -133,6 +158,6 @@ plt.tight_layout()
 
 #save figure
 directory='.../VR/BehaVR/results/graphs'
-filename='CM.pdf'
+filename='HeatMap.pdf'
 filepath = os.path.join(directory, filename)
 test4.savefig(filepath)

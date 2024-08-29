@@ -227,7 +227,6 @@ else:
 
 
 
-
 #data=Final_feature(SG) #Call the input proccessed data
 
 #Adversarial settings=App adversary
