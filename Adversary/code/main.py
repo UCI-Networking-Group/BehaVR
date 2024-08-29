@@ -89,7 +89,7 @@ rp=args.ratio #choose block length, 0=0.5, 1=1, 2=2
 rp_arr=list(range(1, rp))
 
 # Initialize an array to hold the index values of maximum accuracy
-index_rp=np.zeros(rp_arr)
+index_rp=np.zeros(g_id)
 
 #block length ratios for sensor fusion
 rp1=args.r1
@@ -139,7 +139,7 @@ Model=args.Model #Type of models
 
 # Initialize app grouping settings
 gname=app_groups_name() #call app grpups
-acc=np.zeros((len(g_id),args.ratio)) # attack accuracy for different ratio
+acc=np.zeros((len(g_id),len(rp_arr))) # attack accuracy for different ratio
 accGroup=np.zeros((len(gname),len(gname)))
 
 # Array parameters for storing identification accuracy values in different stages
@@ -160,13 +160,23 @@ final_features=[]
 #calculate the optimizationratio
 # Uses the default block ratio length since optimization is not applied
 #calculate optimization ratio (for block length) from app adversaries
+
+#if rp_arr contains only one fixed value, block ratio is fixed
 if len(rp_arr)==1:
     opt_rp=rp
+
+#if rp_arr contains multiple values, find the optimized block ratio that provides the highest identification accuracy
 else:
+    #call input sensor data
     data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+    
+    # Find the optimized ratio for each app by iterating over each app
     for j in range(len(g_id)):
-      for i in range(rp):
-         d=data[rp]
+    
+    #iterate over all block ratio
+      for i in range(len(rp_arr)):
+         rp_i=rp_arr[i]
+         d=data[rp_i]
          d_h=data_preProcess(d,g_id[j],args.target)
          print("check unique users id:",np.unique(d_h['user_id'].values))
          print("load train/test dataset")
@@ -197,7 +207,10 @@ else:
       feature=Top_Features(model,g_id[j],f_n,X_train)
       final_features.append(feature)
       
-      accBar[j]=np.max(acc[j,:]) #final identification accuracy
+      #final identification accuracy (highest over all block ratio)
+      accBar[j]=np.max(acc[j,:])
+      
+      #index of higest accuracy, same as block ratio for higest accuracy
       index_rp[j]=np.argmax(acc[j, :])
     
     #store the optimized ratio (block length) that provides best identification accuracy
