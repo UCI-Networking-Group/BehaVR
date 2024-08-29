@@ -26,6 +26,9 @@ parser.add_argument('--adv', type=str, help='Type of Adversary',default='App')
 #Which sensor data/sensor group we are analyzing, available arguments: 'BM' for Body Motion, 'EG' for Eye Tracking, 'HJ' for Hand Joints and 'FE' for Facial Expression
 parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',default='BM')
 
+#add arguments to choose FBA or FTN method
+parser.add_argument('--data_process', type=str, help='FBA or FTN',default='FBA')
+
 #If feature elimination setting (evaluate by eliminating certain types of features, example Headset features for BM) is true, set True, otherwise False
 parser.add_argument('--feature_elim', type=bool, help='If feature elimination setting is true',default=False)
 
@@ -106,6 +109,9 @@ if (rt=='t'):
 # Argument to specify the type of adversary to be used
 adv=args.adv
 
+#choose data processing method (FBN/FTN)
+data_process=args.data_process
+
 # Define the sensor group to be used
 SG=args.SG
 
@@ -168,7 +174,7 @@ if len(rp_arr)==1:
 #if rp_arr contains multiple values, find the optimized block ratio that provides the highest identification accuracy
 else:
     #call input sensor data
-    data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+    data=Final_feature(SG,OW,data_process) #call input processed data (containing final features per block)
     
     # Find the optimized ratio for each app by iterating over each app
     for j in range(len(g_id)):
@@ -229,7 +235,7 @@ if (adv=='App'):
     if feature_elim==True: #if we eliminate important features and see identification accuracy
         data=Feature_elimination(SG)
     else: #use all features obtained after processing & feature Engineering
-        data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+        data=Final_feature(SG,OW,data_process) #call input processed data (containing final features per block)
     for j in range(len(g_id)):
     # Selects the optimal block ratio length based on the input data
       d=data[opt_rp]
@@ -276,7 +282,7 @@ if (adv=='App'):
 
 #Adversarial settings=Facial Emotions
 elif (adv=='emotion'): #adversary consider particular emotions for identification
-    data=Final_feature(SG,OW) #call input processed data (containing final features per block)
+    data=Final_feature(SG,OW,data_process) #call input processed data (containing final features per block)
     for j in range(len(g_id)):
       for i in range(n_emo):
          emo,_=Emotion_units()
@@ -314,8 +320,8 @@ elif (adv=='emotion'): #adversary consider particular emotions for identificatio
 
 #Adversarial settings=Multiple Sensor Fusion
 elif (adv=='Sensor_fusion'): #adversary consider fusing two or more sensors if one of the sensors identification accuracy is not good enough; optimization for param r is not required as adv already optimized for single sensors.
-    data1=Final_feature(SG1,OW)
-    data2=Final_feature(SG2,OW)
+    data1=Final_feature(SG1,OW,data_process)
+    data2=Final_feature(SG2,OW,data_process)
     for j in range(len(g_id)):
         d=data1[rp1] #ratio of FBA=1
         d1=data2[rp2]
@@ -372,9 +378,9 @@ elif (adv=='Sensor_fusion'): #adversary consider fusing two or more sensors if o
         accfinal.append((app_no, accuracy))
         
 elif (adv=='OW'): #OpenWorld Settings where training and testing data are collected from different settings of same app
-    data=Final_feature(SG,OW)#call original input data for training
+    data=Final_feature(SG,OW,data_process)#call original input data for training
     OW=True #OW=True state that open-world (OW) data calling is true, so get input data from OW settings
-    dataOW=Final_feature(SG,OW) #collect open-world data
+    dataOW=Final_feature(SG,OW,data_process) #collect open-world data
 
 #loop over n number of apps
     for j in range(len(g_id)):
@@ -419,7 +425,7 @@ elif (adv=='OW'): #OpenWorld Settings where training and testing data are collec
 #Adversarial settings=Zero day settings
 elif (adv=='Zero-Day'):
     #input data
-    data=Final_feature(SG,OW)#call original input data for training
+    data=Final_feature(SG,OW,data_process)#call original input data for training
     d=data[opt_rp] #data with optimized ratio
     
     for j in range(len(gname)):

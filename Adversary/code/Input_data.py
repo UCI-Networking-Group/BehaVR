@@ -9,23 +9,28 @@ import pandas as pd
 from preprocess import change_nameFace, change_nameF, change_nameH, change_nameEye,change_nameE, RLeft_Right, change_nameHand, change_eliminate_Head, change_eliminate_RightHand, Emotion_units, change_nameFacialEexpression
 
 
-def Final_feature(SG,OW):
+def Final_feature(SG,OW,Data_process):
+    #data1=data with block ratio 1,data2=data with block ratio 0.5, data_05=data with block ratio 2
+    
+    #Define the data processing folder based on method FBA or FTN
+    base_dir = f'.../VR/data/BM/{Data_process}/'
+
     #Body Motion Data
     if SG=='BM':
         #If open world setting is not true
         if OW==False:
             #call abstracted Body Motion data for 20 users
-            data2 =pd.read_csv('.../VR/data/BM/SG1_FBN_r2_feature.csv', sep=',')
-            data1 = pd.read_csv('.../VR/data/BM/SG1_FBN_r1_feature.csv', sep=',')
-            data_05 = pd.read_csv('.../VR/data/BM/SG1_FBN_r0.5_feature.csv', sep=',')
+            data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
+            data1 = pd.read_csv('{base_dir}f.csv', sep=',')
+            data_05 = pd.read_csv('{base_dir}f.csv', sep=',')
         
         #If open world setting is true
         else:
             print("Open World Data as Input:")
             #call abstracted Body Motion for open world settings
-            data2 =pd.read_csv('/data/...', sep=',')
-            data1 = pd.read_csv('/data/...', sep=',')
-            data_05 = pd.read_csv('/data/...', sep=',')
+            data2 =pd.read_csv('/data/OW/...', sep=',')
+            data1 = pd.read_csv('/data/OW/...', sep=',')
+            data_05 = pd.read_csv('/data/OW/...', sep=',')
             
 
         #preprocess the data
@@ -40,17 +45,17 @@ def Final_feature(SG,OW):
         #If open world is not true
         if OW==False:
             #call abstracted Eye Gaze data for 20 users
-            data2 =pd.read_csv('/data/..', sep=',')
-            data1 = pd.read_csv('/data/..', sep=',')
-            data_05 = pd.read_csv('/data/..', sep=',')
+            data2 =pd.read_csv('{base_dir}f.csv', sep=',')
+            data1 = pd.read_csv('{base_dir}f.csv', sep=',')
+            data_05 = pd.read_csv('{base_dir}f.csv', sep=',')
             
         
         #If open world setting is true
         else:
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/..', sep=',') #collect openworld data
-            data1 = pd.read_csv('/data/..', sep=',')
-            data_05 = pd.read_csv('/data/..', sep=',')
+            data2 =pd.read_csv('/data/OW/..', sep=',') #collect openworld data
+            data1 = pd.read_csv('/data/OW/..', sep=',')
+            data_05 = pd.read_csv('/data/OW/..', sep=',')
         
         datar1=change_nameE(data1)
         datar2=change_nameE(data2)
@@ -75,16 +80,16 @@ def Final_feature(SG,OW):
         #If open world setting is not true
         if OW==False:
             #call abstracted Hand Joint data for 20 users
-            data2 =pd.read_csv('/data/..', sep=',')
-            data1 = pd.read_csv('/data/..', sep=',')
-            data_05 = pd.read_csv('/data/..', sep=',')
+            data2 =pd.read_csv('{base_dir}f.csv', sep=',')
+            data1 = pd.read_csv('{base_dir}f.csv', sep=',')
+            data_05 = pd.read_csv('{base_dir}f.csv', sep=',')
             
         #If open world setting is true
         else:
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/..', sep=',') #collect openworld data
-            data1 = pd.read_csv('/data/..', sep=',')
-            data_05 = pd.read_csv('/data/..', sep=',')
+            data2 =pd.read_csv('/data/OW..', sep=',') #collect openworld data
+            data1 = pd.read_csv('/data/OW..', sep=',')
+            data_05 = pd.read_csv('/data/OW..', sep=',')
         
         datar1=change_nameHand(data1)
         datar2=change_nameHand(data2)
@@ -100,17 +105,17 @@ def Final_feature(SG,OW):
         #If open world setting is not true
         if OW==False:
             #call abstracted Facial data for 20 users
-            data2 =pd.read_csv('.../data/FE/SG4_FBN_r2_feature.csv', sep=',')
-            data1 = pd.read_csv('.../VR/data/FE/SG4_FBN_r1_feature.csv', sep=',')
-            data_05 = pd.read_csv('.../VR/data/FE/SG4_FBN_r0.5_feature.csv', sep=',')
+            data2 =pd.read_csv('{base_dir}f.csv', sep=',')
+            data1 = pd.read_csv('{base_dir}f.csv', sep=',')
+            data_05 = pd.read_csv('{base_dir}f.csv', sep=',')
 
         #If open world setting is true
         else:
             #call abstracted Body Motion for open world settings
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/...', sep=',')
-            data1 = pd.read_csv('/data/...', sep=',')
-            data_05 = pd.read_csv('/data/...', sep=',')
+            data2 =pd.read_csv('/data/OW/...', sep=',')
+            data1 = pd.read_csv('/data/OW/...', sep=',')
+            data_05 = pd.read_csv('/data/OW/...', sep=',')
         
         #Preprocess the data
         datar2=change_nameF(data2)
