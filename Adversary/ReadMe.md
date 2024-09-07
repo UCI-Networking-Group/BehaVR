@@ -22,8 +22,7 @@ $pip install -r requirements.txt
 To navigate to the `Adversary` folder inside the `BehaVR` repository using the command line, you would use the following commands:
 
 ```bash
-cd BehaVR
-cd Adversary
+$cd Adversary
 ```
 
 ## Usage
