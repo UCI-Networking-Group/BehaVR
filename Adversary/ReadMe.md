@@ -34,7 +34,8 @@ $cd Adversary
 
 ## Usage
 
-- **Base Script:** `run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios.
+- **Base Script:** `
+- `~/run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios.
 - **Code:**
   - `~/Input_data.py`: Contains functions for loading and preprocessing input data from different sensor groups: BM (Body Motion), EG (Eye Gaze), HJ (Hand Joint), and FE (Facial Expression).
   - `~/model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
