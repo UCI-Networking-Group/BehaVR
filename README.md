@@ -28,4 +28,4 @@ $ cd BehaVR
 
 
 ## Usage
-
+For detailed usage instructions for each module, please refer to the README files in their respective folders.
