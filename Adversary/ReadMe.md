@@ -19,6 +19,13 @@ $conda activate behavr
 $pip install -r requirements.txt
 ```
 
+To navigate to the `Adversary` folder inside the `BehaVR` repository using the command line, you would use the following commands:
+
+```bash
+cd BehaVR
+cd Adversary
+```
+
 ## Usage
 
 - **Base Script:** `run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios.
