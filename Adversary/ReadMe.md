@@ -4,7 +4,14 @@
 This folder contains code for feature engineering and feature selection, comparing data processing methods (FBL and FBA), optimizing and training models, designing and evaluating BehaVR adversaries, analyzing top features, etc.
 
 ## System Requirements
+We tested the code on a server with the following configuration (reference hardware):
 
+- CPU: Intel Xeon Silver 4316 (2 sockets x 20 cores x 2 threads)
+- Memory: 512 GiB
+- GPU: 2x NVIDIA RTX A5000 (24 GiB of video memory each)
+- OS: Debian GNU/Linux 12 (Bookworm)
+
+A GPU is not required to run the machine learning models; however, we highly recommend using one to speed up the process.
 
 ## Environment Setup
 
