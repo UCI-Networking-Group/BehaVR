@@ -9,7 +9,7 @@ This folder contains code for feature engineering and feature selection, compari
 ## Environment Setup
 
 All the code in this repository is written in Python, and we use Conda to manage the Python dependencies.
-Before getting started, please install Conda by following the [installation instructions] (https://conda.io/projects/conda/en/latest/user-guide/install/linux.html).
+Before getting started, please install Conda by following the [installation-instructions](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
 Create a new conda environment named `behavr` using python 3.10 and install the necessary dependencies. 
 Please see the [requirement.txt](https://github.com/UCI-Networking-Group/BehaVR/blob/main/Adversary/requirement.txt) file for all the dependencies.
