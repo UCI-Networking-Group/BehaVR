@@ -1,7 +1,5 @@
 #@ijarin
-#create condo virtual env
-conda create --name vr python=3.10
-conda activate vr
+
 # Basic scientific packages
 conda install numpy pandas matplotlib seaborn scipy scikit-learn
 # For deep learning

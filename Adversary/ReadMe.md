@@ -1,12 +1,23 @@
 
-## Overview
+## BehaVR Adversary Training and Evaluation
 
 This folder contains code for feature engineering and feature selection, comparing data processing methods (FBL and FBA), optimizing and training models, designing and evaluating BehaVR adversaries, analyzing top features, etc.
 
 ## System Requirements
 
+
 ## Environment Setup
-Please see the `requirement.txt` file for all the dependencies.
+
+All the code in this repository is written in Python, and we use Conda to manage the Python dependencies.
+Before getting started, please install Conda by following the [installation instructions] (https://conda.io/projects/conda/en/latest/user-guide/install/linux.html).
+
+Create a new conda environment named `behavr` using python 3.10 and install the necessary dependencies. 
+Please see the [requirement.txt](https://github.com/UCI-Networking-Group/BehaVR/blob/main/Adversary/requirement.txt) file for all the dependencies.
+```console
+$conda create --name behavr python=3.10
+$conda activate behavr
+$pip install -r requirements.txt
+```
 
 ## Usage
 
