@@ -8,7 +8,7 @@ This repository contains BehaVR, a framework designed to analyze unique user ide
 ```bibtex
 @inproceedings{,
   title     = {BehaVR: User Identification Based on VR Sensor Data},
-  author    = {Jarin, Ismat and Duan, Yu and Trimananda, Rahmadi and Cui, Hao and Elmalaki,Salma and Markopoulou, Athina},
+  author    = {Jarin, Ismat and Duan, Yu and Trimananda, Rahmadi and Cui, Hao and Elmalaki, Salma and Markopoulou, Athina},
   booktitle = {Proceedings on Privacy Enhancing Technologies (PoPETs)},
   volume    = {2025},
   issue     = {1},
@@ -20,5 +20,13 @@ This repository contains BehaVR, a framework designed to analyze unique user ide
 
 ## Environment Setup
 
-##Usage
+To clone the repository:
+
+```console
+$ git clone https://github.com/UCI-Networking-Group/BehaVR.git
+$ cd BehaVR
+```
+
+
+## Usage
 
