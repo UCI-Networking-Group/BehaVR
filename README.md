@@ -32,7 +32,7 @@ $ git clone https://github.com/UCI-Networking-Group/BehaVR.git
 $ cd BehaVR
 ``` 
 
-### BehaVR Experiment Modules
+**BehaVR Experiment Modules**
 
 BehaVR experiments consist of three parts: BehaVR data collection, BehaVR data processing, and BehaVR adversaries for feature engineering, model training, and evaluation.
 
@@ -40,7 +40,6 @@ BehaVR experiments consist of three parts: BehaVR data collection, BehaVR data p
 
    - We used ALVR to intercept and record sensor data in a SteamVR + Meta Quest Pro setup (see Section 3.1 in the paper).
    - Go to the `Data-collection` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
- 
 
 2. **BehaVR Data Processing**:
    - In the `Data-processing` folder, you'll find instructions on processing raw sensor data. This step converts time series data into feature blocks for further feature engineering.
