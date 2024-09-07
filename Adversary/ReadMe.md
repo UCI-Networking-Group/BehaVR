@@ -28,7 +28,7 @@ $pip install -r requirements.txt
 
 To navigate to the `Adversary` folder inside the `BehaVR` repository using the command line, you would use the following commands:
 
-```bash
+```console
 $cd Adversary
 ```
 
@@ -45,9 +45,12 @@ $cd Adversary
 
 To run the code, please run the commands on your terminal based on the type of BehaVR adversary and sensor group. For example, to run an app adversary model on the Facial Expression (FE) sensor group on the first 15 apps, where your chosen model is Random Forest, run the following command in the terminal:
 
-```bash
+```console
 $ cd code
 $ python main.py --SG='BM' --num_app=15 --adv='App' --Model='RF'
+```
 Or, you can simply change your command in the run.py and run the following command in the terminal:
-$ python run.py
 
+```console
+$ python run.py
+```
