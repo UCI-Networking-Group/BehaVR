@@ -36,15 +36,14 @@ $ cd BehaVR
 
 BehaVR experiments consist of three parts: BehaVR data collection, BehaVR data processing, and BehaVR adversaries for feature engineering, model training, and evaluation.
 
-- BehaVR Data Collection:
-
+- **BehaVR Data Collection**:
    - We used ALVR to intercept and record sensor data in a SteamVR + Meta Quest Pro setup (see Section 3.1 in the paper).
    - Go to the `Data-collection` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
 
--BehaVR Data Processing:
+- **BehaVR Data Processing**:
    - In the `Data-processing` folder, you'll find instructions on processing raw sensor data. This step converts time series data into feature blocks for further feature engineering.
 
-- BehaVR Adversaries:
+- **BehaVR Adversaries**:
    - For feature engineering, model training, and evaluation tasks, refer to the `Adversaries` folder for the appropriate scripts and instructions.
 
 ## System Requirements
