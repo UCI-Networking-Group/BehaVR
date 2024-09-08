@@ -44,7 +44,7 @@ BehaVR experiments consist of three parts: BehaVR data collection, BehaVR data p
    - In the `Data-processing` folder, you'll find instructions on processing raw sensor data. This step converts time series data into feature blocks for further feature engineering.
 
 - **BehaVR Adversaries**:
-   - For feature engineering, model training, and evaluation tasks, refer to the `Adversaries` folder for the appropriate scripts and instructions.
+   - For feature engineering, model training, and evaluation tasks, refer to the `Adversary` folder for the appropriate scripts and instructions.
 
 ## System Requirements
 For detailed system requirements, please refer to the README files in their respective folders.
