@@ -23,7 +23,7 @@ Please cite our paper as follows:
 }
 ```
 
-## Getting Starter with BehaVR 
+## Getting Started with BehaVR 
 
 To clone the repository:
 
