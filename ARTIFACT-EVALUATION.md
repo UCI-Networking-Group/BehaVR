@@ -4,7 +4,7 @@ Paper title: **BehaVR:User Identification Based on VR Sensor Data**
 
 Artifacts HotCRP Id: **#9** 
 
-Requested Badge: Either **Available**
+Requested Badge: **Available**
 
 ## Description
 A short description of your artifact and how it links to your paper.
