@@ -1,6 +1,6 @@
 # Artifact Appendix
 
-Paper title: ** BehaVR:User Identification Based on VR Sensor Data**
+Paper title: **BehaVR:User Identification Based on VR Sensor Data**
 
 Artifacts HotCRP Id: **#9** 
 
