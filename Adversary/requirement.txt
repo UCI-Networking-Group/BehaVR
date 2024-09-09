@@ -1,8 +1,0 @@
-#@ijarin
-
-# Basic scientific packages
-conda install numpy pandas matplotlib seaborn scipy scikit-learn
-# For deep learning
-conda install tensorflow keras pytorch torchvision torchaudio -c pytorch
-#For XGB
-pip install xgboost

@@ -18,8 +18,8 @@ A GPU is not required to run the machine learning models; however, we highly rec
 All the code in this repository is written in Python, and we use Conda to manage the Python dependencies.
 Before getting started, please install Conda by following the [installation-instructions](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
-Create a new conda environment named `behavr` and install the necessary dependencies. 
-Please see the [requirement.txt](https://github.com/UCI-Networking-Group/BehaVR/blob/main/Adversary/requirement.txt) file for all the dependencies.
+Create a new conda environment named `behavr` and install the necessary dependencies: 
+
 ```console
 $ conda env create -n behavr -f environment.yml
 $ conda activate behavr
