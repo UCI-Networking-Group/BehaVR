@@ -11,7 +11,7 @@ We tested the code on a server with the following configuration (reference hardw
 - GPU: 2x NVIDIA RTX A5000 (24 GiB of video memory each)
 - OS: Debian GNU/Linux 12 (Bookworm)
 
-A GPU is not required to run the machine learning models; however, we highly recommend using one to speed up the process.
+A GPU is not required to run the machine learning models, however, we highly recommend using one to speed up the process.
 
 ## Environment Setup
 
@@ -43,6 +43,7 @@ $ cd Adversary
   - `~/plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
   - `~/sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
+## Running Code
 To run the code, please run the commands on your terminal based on the type of BehaVR adversary and sensor group. For example, to run an app adversary model on the Facial Expression (FE) sensor group on the first 15 apps, where your chosen model is Random Forest, run the following command in the terminal:
 
 ```console
@@ -54,3 +55,5 @@ Or, you can simply change your command in the run.py and run the following comma
 ```console
 $ python run.py
 ```
+
+## Note
