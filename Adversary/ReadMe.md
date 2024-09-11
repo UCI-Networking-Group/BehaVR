@@ -1,7 +1,7 @@
 
 ## BehaVR Adversary Training and Evaluation
 
-This folder contains code for feature engineering and feature selection, comparing data processing methods (FBL and FBA), optimizing and training models, designing and evaluating BehaVR adversaries, analyzing top features, etc.
+This folder contains the essential code for feature engineering and selection, comparing data processing methods (FBL and FBA), optimizing and training models for different adversaries, designing and evaluating various BehaVR adversary settings, and analyzing top features (see Sections 4.1.3-5 in the main paper).
 
 
 ## Getting Started
