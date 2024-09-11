@@ -46,7 +46,9 @@ $ conda activate behavr
   - `~/plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
   - `~/sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
-- **Optional arguments:**
+- **Adversarial arguments:**
+In the terminal, when running `main.py`, you can use the following optional arguments. These arguments depend on the adversarial settings, but are not required, as `main.py` can automatically execute with default settings.
+
 ```
 --help                  Show this help message and exit.
 --SG                    The sensor group-BM/FE/EG/HJ.
