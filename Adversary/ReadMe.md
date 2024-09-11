@@ -47,7 +47,7 @@ $ conda activate behavr
   - `~/sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
 - **Adversarial arguments:**
-In the terminal, when running `main.py`, you can use the following optional arguments. These arguments depend on the adversarial settings, but are not required, as `main.py` can automatically execute with default settings.
+In the terminal, when running `main.py`, you can use the following optional arguments. These arguments depend on the adversarial settings, but are optional, as `main.py` can automatically execute with default settings.
 
 ```
 --help                  Show this help message and exit.
