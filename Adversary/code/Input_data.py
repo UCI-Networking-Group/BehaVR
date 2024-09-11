@@ -12,8 +12,11 @@ from preprocess import change_nameFace, change_nameF, change_nameH, change_nameE
 def Final_feature(SG,OW,Data_process):
     #data1=data with block ratio 1,data2=data with block ratio 0.5, data_05=data with block ratio 2
     
-    #Define the data processing folder based on method FBA or FBL
-    base_dir = f'.../VR/data/BM/{Data_process}/'
+    #Define the data processing folder and call data corresponding to sensor group
+    base_dir = f'.../VR/data/'+SG+'/{Data_process}/'
+    
+    #Define the data processing folder based on your local directory and call data corresponding to sensor group
+    base_dir_OW=f'.../VR/data/OW/'+SG+'/{Data_process}/'
 
     #Body Motion Data
     if SG=='BM':
@@ -28,9 +31,9 @@ def Final_feature(SG,OW,Data_process):
         else:
             print("Open World Data as Input:")
             #call abstracted Body Motion for open world settings
-            data2 =pd.read_csv('/data/OW/...', sep=',')
-            data1 = pd.read_csv('/data/OW/...', sep=',')
-            data_05 = pd.read_csv('/data/OW/...', sep=',')
+            data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
+            data1 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
+            data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
             
 
         #preprocess the data
@@ -53,9 +56,9 @@ def Final_feature(SG,OW,Data_process):
         #If open world setting is true
         else:
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/OW/..', sep=',') #collect openworld data
-            data1 = pd.read_csv('/data/OW/..', sep=',')
-            data_05 = pd.read_csv('/data/OW/..', sep=',')
+            data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',') #collect openworld data
+            data1 = pd.read_csv(f'{base_dir_OW}f.csv'', sep=',')
+            data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
         
         datar1=change_nameE(data1)
         datar2=change_nameE(data2)
@@ -87,9 +90,9 @@ def Final_feature(SG,OW,Data_process):
         #If open world setting is true
         else:
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/OW..', sep=',') #collect openworld data
-            data1 = pd.read_csv('/data/OW..', sep=',')
-            data_05 = pd.read_csv('/data/OW..', sep=',')
+            data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',') #collect openworld data
+            data1 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
+            data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
         
         datar1=change_nameHand(data1)
         datar2=change_nameHand(data2)
@@ -113,9 +116,9 @@ def Final_feature(SG,OW,Data_process):
         else:
             #call abstracted Body Motion for open world settings
             print("Open World Data as Input:")
-            data2 =pd.read_csv('/data/OW/...', sep=',')
-            data1 = pd.read_csv('/data/OW/...', sep=',')
-            data_05 = pd.read_csv('/data/OW/...', sep=',')
+            data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
+            data1 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
+            data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
         
         #Preprocess the data
         datar2=change_nameF(data2)
@@ -128,13 +131,15 @@ def Final_feature(SG,OW,Data_process):
 
 #if eliminate certain features
 def Feature_elimination(SG):
-
+    #Define the data processing folder, and call data corresponding to sensor group
+    base_dir = f'.../VR/data/'+SG+'/{Data_process}/'
+    
     #Body Motion Data
     if SG=='BM':
         #call abstracted Body Motion data for 20 users
-        data2 =pd.read_csv('.../data/BM/SG1_FBN_r2_feature.csv', sep=',')
-        data1 = pd.read_csv('...data/BM/SG1_FBN_r1_feature.csv', sep=',')
-        data_05 = pd.read_csv('.../BM/SG1_FBN_r0.5_feature.csv', sep=',')
+        data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data1 = pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data_05 = pd.read_csv(f'{base_dir}f.csv', sep=',')
         
         #Filter the data such that headset features are going to be eliminated
         datar1=change_eliminate_Head(data1)
@@ -146,9 +151,9 @@ def Feature_elimination(SG):
     #Eye Tracking/Gaze Data
     elif SG=='EG':
         #call abstracted Eye Gaze data for 20 users
-        data2 =pd.read_csv('/data/..', sep=',')
-        data1 = pd.read_csv('/data/..', sep=',')
-        data_05 = pd.read_csv('/data/..', sep=',')
+        data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data1 = pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data_05 = pd.read_csv(f'{base_dir}f.csv', sep=',')
 
         #data without augmented features
         datar1=change_nameEye(change_nameE(data1))
@@ -162,9 +167,9 @@ def Feature_elimination(SG):
     #Hand joint data
     elif SG=='HJ':
         #call abstracted Hand Joint data for 20 users
-        data2 =pd.read_csv('/data/..', sep=',')
-        data1 = pd.read_csv('/data/..', sep=',')
-        data_05 = pd.read_csv('/data/..', sep=',')
+        data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data1 = pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data_05 = pd.read_csv(f'{base_dir}f.csv', sep=',')
 
         #data without Right Hand Features
         datar1=change_eliminate_RightHand(change_nameHand(data1))
@@ -178,9 +183,9 @@ def Feature_elimination(SG):
     #Facial Expression data
     elif SG=='FE':
         #call abstracted Hand Joint data for 20 users
-        data2 =pd.read_csv('/data/..', sep=',')
-        data1 = pd.read_csv('/data/..', sep=',')
-        data_05 = pd.read_csv('/data/..', sep=',')
+        data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data1 = pd.read_csv(f'{base_dir}f.csv', sep=',')
+        data_05 = pd.read_csv(f'{base_dir}f.csv', sep=',')
         _,f=Emotion_units()
 
         #data without Facial Emotion Features
