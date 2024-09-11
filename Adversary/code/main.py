@@ -24,7 +24,7 @@ parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',defaul
 
 #types of adversarys, available arguments: adv='App' for app adversary, 'emotion' for adversary who only consider emotion features, 'OW' for open-world settings, 'Zero-Day' for zero day settings
 #'Sensor_fusion' for combining multiple sensors
-parser.add_argument('--adv', type=str, help='Type of Adversary: App-App Adversary, emotion-Identification using facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World Setting, Zero-Day-Zero-Day Settings.',default='App')
+parser.add_argument('--adv', type=str, help='Type of Adversary- App:App Adversary, emotion:Identification using facial emotion, Sensor_fusion:Sensor Group Model Ensemble, OW:Open World Setting, Zero-Day:Zero-Day Settings.',default='App')
 
 
 #Number of emotion we analyzing
@@ -35,7 +35,7 @@ parser.add_argument('--SG1', type=str, help='The first sensor group for Ensemble
 parser.add_argument('--SG2', type=str, help='The second sensor group for Ensemble multiple sensors-BM/FE/EG/HJ',default='EG')
 
 # Set True if Open World Setting is True, otherwise, False
-parser.add_argument('--OW', type=bool, help='If openworld setting is true',default=False)
+parser.add_argument('--OW', type=bool, help='If open-world setting is true',default=False)
 
 #add arguments to choose FBA or FTN method
 parser.add_argument('--data_process', type=str, help='FBA or FBL',default='FBA')
@@ -59,7 +59,7 @@ parser.add_argument('--Model', type=str, help='Model type, RF=Random Forest, XGB
 parser.add_argument('--target', type=str, help='Target Classifier',default='user_id')
 
 #number of Cross_validation for model training
-parser.add_argument('--cross_val', type=int, help='Cross_validation value',default=5)
+parser.add_argument('--cross_val', type=int, help='Cross validation value',default=5)
 
 #control block length ratio
 parser.add_argument('--ratio', type=int, help='Block length controller ratio',default=1)
@@ -69,7 +69,7 @@ parser.add_argument('--r1', type=int, help='block length controller ratio for SG
 parser.add_argument('--r2', type=int, help='block length controller ratio for SG2',default=1)
 
 #control subsession time, example, M=3 means 33.33% subsession time will be considered for evaluation
-parser.add_argument('--M', type=int, help='Controlling subsession time, M inversely proportional to subsession',default=1)
+parser.add_argument('--M', type=int, help='Controlling sub-session time, M inversely proportional to subsession',default=1)
 
 #observe f_n number of top features
 parser.add_argument('--f_n', type=int, help='How many top feature we want to observe',default=20)

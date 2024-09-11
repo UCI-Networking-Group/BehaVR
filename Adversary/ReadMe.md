@@ -52,23 +52,23 @@ In the terminal, when running `main.py`, you can use the following optional argu
 ```
 --help                  Show this help message and exit.
 --SG                    The sensor group-BM/FE/EG/HJ.
---adv                   Type of Adversary: App-App Adversary, emotion-Identification using                               facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World                         Setting, Zero-Day-Zero-Day Settings.
+--adv                   Type of Adversary- App:App Adversary, emotion:Identification using                               facial emotion, Sensor_fusion:Sensor Group Model Ensemble, OW:Open World                         Setting, Zero-Day:Zero-Day Settings.
 --n_emo                 The number of emotions we consider.
 --SG1                   The first sensor group for Ensemble multiple sensors-BM/FE/EG/HJ.
 --SG2                   The second sensor group for Ensemble multiple sensors-BM/FE/EG/HJ
 --data_process          FBA or FBL.
 --feature_elim          Eliminating top features (Figure 9 Evaluation).   
---OW                    If openworld setting is true.
+--OW                    If open-world setting is true.
 --num_user              Total number of users.
 '--rt                   remove user id x ir rt=t, all users will be used if rt=f
 --num_app               Total number of apps.
 --Model                 Model type, RF=Random Forest, XGB=Xboost.
 --target                Target Classifier.
---cross_val             Cross_validation value.
+--cross_val             Cross validation value.
 --ratio                 Block length controller ratio.
 --r1                    Block length controller ratio for SG1.
 --r2                    Block length controller ratio for SG2.
---M                     Controlling subsession time, M inversely proportional to subsession.
+--M                     Controlling sub-session time, M inversely proportional to subsession.
 --f_n                   How many top feature we want to observe.
 --output_dir            Directory to save output results.
 
@@ -90,5 +90,10 @@ $ python run.py
 - **Example 1**: To evaluate the identification accuracy for the Body Motion sensor group and app adversary using the Random Forest model, with results from 20 apps and 20 users (refer to Section 5.1 in the main paper), run the following command:
 
 ```console
-python main.py --SG='BM' --num_app=20  --num_user=20 --adv='App' --Model='RF'
+$ python main.py --SG='BM' --num_app=20  --num_user=20 --adv='App' --Model='RF'
+```
+- **Example 2**: To evaluate Zero-day scenarios with 20 users and the Facial Expression sensor group using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
+
+```console
+$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='RandomForest'
 ```
