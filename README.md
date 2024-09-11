@@ -45,7 +45,7 @@ BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data p
    - Go to the `Data-processing` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
 
 - **BehaVR Adversaries**:
-   - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5).
+   - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5 in the paper).
    - Go to the `Adversary` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
 
 ## System Requirements
