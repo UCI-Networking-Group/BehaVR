@@ -37,8 +37,7 @@ $ cd BehaVR
 BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data processing, and BehaVR Adversaries.
 
 - **BehaVR Data Collection**:
-   -This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper.
-   - We used ALVR to intercept and record sensor data in a SteamVR + Meta Quest Pro setup (see Section 3.1 in the paper).
+   - This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper (see Section 3.1 in the paper).
    - Go to the `Data-collection` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
 
 - **BehaVR Data Processing**:
