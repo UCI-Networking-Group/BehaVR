@@ -87,3 +87,8 @@ $ python run.py
 ```
 
 ## Examples
+- **Example 1**: To evaluate the identification accuracy for the Body Motion sensor group and app adversary using the Random Forest model, with results from 20 apps and 20 users (refer to Section 5.1 in the main paper), run the following command:
+
+```console
+python main.py --SG='BM' --num_app=20  --num_user=20 --adv='App' --Model='RF'
+```
