@@ -58,6 +58,7 @@ optional arguments:
 --feature_elim          Eliminating top features (Figure 9 Evaluation).   
 --OW                    If openworld setting is true.
 --num_user              Total number of users.
+'--rt                   remove user id x ir rt=t, all users will be used if rt=f
 --num_app               Total number of apps.
 --Model                 Model type, RF=Random Forest, XGB=Xboost.
 --target                Target Classifier.
@@ -67,8 +68,7 @@ optional arguments:
 --r2                    Block length controller ratio for SG2.
 --M                     Controlling subsession time, M inversely proportional to subsession.
 --f_n                   How many top feature we want to observe.
-
-
+--output_dir            Directory to save output results.
 
 ```
 ## Running Code
@@ -76,7 +76,7 @@ To run the code, please run the commands on your terminal based on the type of B
 
 ```console
 $ cd code
-$ python main.py --SG='BM' --num_app=15 --adv='App' --Model='RF'
+$ python main.py 
 ```
 Or, you can simply change your command in the run.py and run the following command in the terminal:
 
@@ -84,4 +84,4 @@ Or, you can simply change your command in the run.py and run the following comma
 $ python run.py
 ```
 
-## Note
+## Examples

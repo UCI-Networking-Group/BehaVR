@@ -46,6 +46,9 @@ parser.add_argument('--feature_elim', type=bool, help='Eliminating top features'
 #total number of users/participants
 parser.add_argument('--num_user', type=int, help='Total number of users',default=20)
 
+#if remove any user
+parser.add_argument('--rt', type=str, help='remove user id x ir rt=t, all users will be used if rt=f',default='f')
+
 #Total number of apps we are analyzing, in BehaVR it's 20
 parser.add_argument('--num_app', type=int, help='Total number of apps',default=20)
 
@@ -72,10 +75,8 @@ parser.add_argument('--M', type=int, help='Controlling subsession time, M invers
 parser.add_argument('--f_n', type=int, help='How many top feature we want to observe',default=20)
 
 #put output directorty to save the results
-parser.add_argument('--output_dir', type=str, help='Output Directory to save output',default='.../VR/Adversary/results/output')
+parser.add_argument('--output_dir', type=str, help='Directory to save output results',default='.../VR/Adversary/results/output')
 
-#if remove any user
-parser.add_argument('--rt', type=str, help='remove user id x ir rt=t, all users if rt=f',default='f')
 
 args = parser.parse_args()
 
