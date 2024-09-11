@@ -34,7 +34,7 @@ $ cd BehaVR
 
 **BehaVR Experiment Modules**
 
-BehaVR experiments consist of three parts: BehaVR data collection, BehaVR data processing, and BehaVR adversaries for feature engineering, model training, and evaluation.
+BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data processing, and BehaVR Adversaries.
 
 - **BehaVR Data Collection**:
    - We used ALVR to intercept and record sensor data in a SteamVR + Meta Quest Pro setup (see Section 3.1 in the paper).
