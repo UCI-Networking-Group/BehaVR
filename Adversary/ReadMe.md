@@ -52,7 +52,10 @@ In the terminal, when running `main.py`, you can use the following arguments. Th
 ```
 --help                  Show this help message and exit.
 --SG                    The sensor group-BM/FE/EG/HJ.
---adv                   Type of Adversary- App:App Adversary, emotion:Identification using                              facial emotion, Sensor_fusion:Sensor Group Model Ensemble, OW:Open World                        Setting, Zero-Day:Zero-Day Settings.
+--adv                   Type of Adversary- App:App Adversary, 
+                        emotion:Identification using facial emotion, 
+                        Sensor_fusion:Sensor Group Model Ensemble, 
+                        OW:Open World Setting, Zero-Day:Zero-Day Settings.
 --n_emo                 The number of emotions we consider.
 --SG1                   The first sensor group for Ensemble multiple sensors-BM/FE/EG/HJ.
 --SG2                   The second sensor group for Ensemble multiple sensors-BM/FE/EG/HJ.
