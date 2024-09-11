@@ -25,7 +25,7 @@ Please cite our paper as follows:
 
 ## Getting Started with BehaVR 
 
-To clone the repository:
+To clone the repository and navigate into the project folder, run the following commands:
 
 ```console
 $ git clone https://github.com/UCI-Networking-Group/BehaVR.git
