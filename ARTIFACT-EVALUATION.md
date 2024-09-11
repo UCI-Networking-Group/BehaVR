@@ -7,12 +7,27 @@ Artifacts HotCRP Id: **#9**
 Requested Badge: **Available**
 
 ## Description
-A short description of your artifact and how it links to your paper.
+
+ **Overview**
+This repository contains BehaVR, a framework designed to analyze unique user identification using 20 commercial VR apps (See Section 2.3 in the main paper for details about selected apps) using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper BehaVR:User Identification Based on VR Sensor Data. Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework. 
+
+**BehaVR Pipeline**
+ BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data processing, and BehaVR Adversaries.
+
+- **BehaVR Data Collection**:
+   - This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper (see Section 3.1 in the paper).
+   - Go to the `Data-collection` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
+
+- **BehaVR Data Processing**:
+   - This module outlines the steps to convert time series data into feature blocks for further feature engineering (see Section 4.1.1 and 4.1.2 in the paper).
+   - Go to the `Data-processing` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
+
+- **BehaVR Adversaries**:
+   - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5 in the paper).
+   - Go to the `Adversary` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
 
 ### Security/Privacy Issues and Ethical Concerns (All badges)
-If your artifact holds any risk to the security or privacy of the reviewer's machine, specify them here, e.g., if your artifact requires a specific security mechanism, like the firewall, ASLR, or another thing, to be disabled for its execution.
-Also, emphasize if your artifact contains malware samples, or something similar, to be analyzed.
-In addition, you should highlight any ethical concerns regarding your artifacts here.
+None.
 
 ## Basic Requirements (Only for Functional and Reproduced badges)
 Describe the minimal hardware and software requirements of your artifact and estimate the compute time and storage required to run the artifact.
