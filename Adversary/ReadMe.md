@@ -48,12 +48,27 @@ $ conda activate behavr
 
 optional arguments:
 ```
---help                  Show this help message and exit
---SG                    The sensor group-BM/FE/EG/HJ
+--help                  Show this help message and exit.
+--SG                    The sensor group-BM/FE/EG/HJ.
 --adv                   Type of Adversary: App-App Adversary, emotion-Identification using                               facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World                         Setting, Zero-Day-Zero-Day Settings.
---data_process          FBA or FBL
---feature_elim          Eliminating top features (Figure 9 Evaluation)   
---OW                    If openworld setting is true
+--n_emo                 The number of emotions we consider.
+--SG1                   The first sensor group for Ensemble multiple sensors-BM/FE/EG/HJ.
+--SG2                   The second sensor group for Ensemble multiple sensors-BM/FE/EG/HJ
+--data_process          FBA or FBL.
+--feature_elim          Eliminating top features (Figure 9 Evaluation).   
+--OW                    If openworld setting is true.
+--num_user              Total number of users.
+--num_app               Total number of apps.
+--Model                 Model type, RF=Random Forest, XGB=Xboost.
+--target                Target Classifier.
+--cross_val             Cross_validation value.
+--ratio                 Block length controller ratio.
+--r1                    Block length controller ratio for SG1.
+--r2                    Block length controller ratio for SG2.
+--M                     Controlling subsession time, M inversely proportional to subsession.
+--f_n                   How many top feature we want to observe.
+
+
 
 ```
 ## Running Code

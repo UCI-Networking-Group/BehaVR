@@ -19,12 +19,20 @@ import os
 #arguments
 parser = argparse.ArgumentParser()
 
-#types of adversarys, available arguments: adv='App' for app adversary, 'emotion' for adversary who only consider emotion features, 'OW' for open-world settings, 'Zero-Day' for zero day settings
-#'Sensor_fusion' for combining multiple sensors
 #Which sensor data/sensor group we are analyzing, available arguments: 'BM' for Body Motion, 'EG' for Eye Tracking, 'HJ' for Hand Joints and 'FE' for Facial Expression
 parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',default='BM')
 
+#types of adversarys, available arguments: adv='App' for app adversary, 'emotion' for adversary who only consider emotion features, 'OW' for open-world settings, 'Zero-Day' for zero day settings
+#'Sensor_fusion' for combining multiple sensors
 parser.add_argument('--adv', type=str, help='Type of Adversary: App-App Adversary, emotion-Identification using facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World Setting, Zero-Day-Zero-Day Settings.',default='App')
+
+
+#Number of emotion we analyzing
+parser.add_argument('--n_emo', type=int, help='The number of emotions we consider',default=2)
+
+#if use Sensor fusion as adversary, use SG1, SG2
+parser.add_argument('--SG1', type=str, help='The first sensor group for Ensemble multiple sensors-BM/FE/EG/HJ',default='BM')
+parser.add_argument('--SG2', type=str, help='The second sensor group for Ensemble multiple sensors-BM/FE/EG/HJ',default='EG')
 
 # Set True if Open World Setting is True, otherwise, False
 parser.add_argument('--OW', type=bool, help='If openworld setting is true',default=False)
@@ -35,40 +43,33 @@ parser.add_argument('--data_process', type=str, help='FBA or FBL',default='FBA')
 #If feature elimination setting (evaluate by eliminating certain types of features, example Headset features for BM) is true, set True, otherwise False
 parser.add_argument('--feature_elim', type=bool, help='Eliminating top features',default=False)
 
-#Set up which type of model architecture adversary choosing
-parser.add_argument('--Model', type=str, help='Model type, RF=Random Forest, XGB=Xboost',default='RF')
-
 #total number of users/participants
 parser.add_argument('--num_user', type=int, help='Total number of users',default=20)
-
-#number of Cross_validation for model training
-parser.add_argument('--cross_val', type=int, help='Cross_validation value',default=5)
-
-#Number of emotion we analyzing
-parser.add_argument('--n_emo', type=int, help='Type of emotion features we analyzed',default=2)
 
 #Total number of apps we are analyzing, in BehaVR it's 20
 parser.add_argument('--num_app', type=int, help='Total number of apps',default=20)
 
+#Set up which type of model architecture adversary choosing
+parser.add_argument('--Model', type=str, help='Model type, RF=Random Forest, XGB=Xboost',default='RF')
+
+#target classifier, for BehaVR we want to classify each user uniquely
+parser.add_argument('--target', type=str, help='Target Classifier',default='user_id')
+
+#number of Cross_validation for model training
+parser.add_argument('--cross_val', type=int, help='Cross_validation value',default=5)
+
 #control block length ratio
-parser.add_argument('--ratio', type=int, help='block length controller ratio',default=1)
+parser.add_argument('--ratio', type=int, help='Block length controller ratio',default=1)
+
+#controlling block length ratio
+parser.add_argument('--r1', type=int, help='block length controller ratio for SG1',default=1)
+parser.add_argument('--r2', type=int, help='block length controller ratio for SG2',default=1)
 
 #control subsession time, example, M=3 means 33.33% subsession time will be considered for evaluation
 parser.add_argument('--M', type=int, help='Controlling subsession time, M inversely proportional to subsession',default=1)
 
 #observe f_n number of top features
 parser.add_argument('--f_n', type=int, help='How many top feature we want to observe',default=20)
-
-#if use Sensor fusion as adversary, use SG1, SG2
-parser.add_argument('--SG1', type=str, help='The first sensor group-BM/FE/EG/HJ',default='BM')
-parser.add_argument('--SG2', type=str, help='The second sensor group-BM/FE/EG/HJ',default='EG')
-
-#controlling block length ratio
-parser.add_argument('--r1', type=int, help='block length controller ratio for SG1',default=1)
-parser.add_argument('--r2', type=int, help='block length controller ratio for SG2',default=1)
-
-#target classifier, for BehaVR we want to classify each user uniquely
-parser.add_argument('--target', type=str, help='Target Classifier',default='user_id')
 
 #put output directorty to save the results
 parser.add_argument('--output_dir', type=str, help='Output Directory to save output',default='.../VR/Adversary/results/output')
