@@ -60,7 +60,7 @@ In the terminal, when running `main.py`, you can use the following arguments. Th
 --feature_elim          Eliminating top features (Figure 9 Evaluation).   
 --OW                    If open-world setting is true.
 --num_user              Total number of users.
---rt                   remove user id x ir rt=t, all users will be used if rt=f
+--rt                    remove user id x ir rt=t, all users will be used if rt=f.
 --num_app               Total number of apps.
 --Model                 Model type, RF=Random Forest, XGB=Xboost.
 --target                Target Classifier.
