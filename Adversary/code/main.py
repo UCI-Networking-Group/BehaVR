@@ -10,8 +10,8 @@ import xgboost as xgb
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 import argparse
-from Input_data import Final_feature
-from preprocess import data_preProcess, dT,train_test,stratified_train_test_split, index_dev,divide_pred, final_label, Emotion, DataE, Emotion_units, concatenate_arrays, app_groups_name, app_grouping, f_data, Feature_elimination
+from Input_data import Final_feature, Feature_elimination
+from preprocess import data_preProcess, dT,train_test,stratified_train_test_split, index_dev,divide_pred, final_label, Emotion, DataE, Emotion_units, concatenate_arrays, app_groups_name, app_grouping, f_data
 from model import RF_tuning, XB_tuning, final_model, Top_Features
 import os
 
@@ -21,19 +21,19 @@ parser = argparse.ArgumentParser()
 
 #types of adversarys, available arguments: adv='App' for app adversary, 'emotion' for adversary who only consider emotion features, 'OW' for open-world settings, 'Zero-Day' for zero day settings
 #'Sensor_fusion' for combining multiple sensors
-parser.add_argument('--adv', type=str, help='Type of Adversary',default='App')
-
 #Which sensor data/sensor group we are analyzing, available arguments: 'BM' for Body Motion, 'EG' for Eye Tracking, 'HJ' for Hand Joints and 'FE' for Facial Expression
 parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',default='BM')
+
+parser.add_argument('--adv', type=str, help='Type of Adversary: App-App Adversary, emotion-Identification using facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World Setting, Zero-Day-Zero-Day Settings.',default='App')
+
+# Set True if Open World Setting is True, otherwise, False
+parser.add_argument('--OW', type=bool, help='If openworld setting is true',default=False)
 
 #add arguments to choose FBA or FTN method
 parser.add_argument('--data_process', type=str, help='FBA or FBL',default='FBA')
 
 #If feature elimination setting (evaluate by eliminating certain types of features, example Headset features for BM) is true, set True, otherwise False
-parser.add_argument('--feature_elim', type=bool, help='If feature elimination setting is true',default=False)
-
-# Set True if Open World Setting is True, otherwise, False
-parser.add_argument('--OW', type=bool, help='If openworld setting is true',default=False)
+parser.add_argument('--feature_elim', type=bool, help='Eliminating top features',default=False)
 
 #Set up which type of model architecture adversary choosing
 parser.add_argument('--Model', type=str, help='Model type, RF=Random Forest, XGB=Xboost',default='RF')

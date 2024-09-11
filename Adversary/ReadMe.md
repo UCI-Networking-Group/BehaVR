@@ -3,6 +3,14 @@
 
 This folder contains code for feature engineering and feature selection, comparing data processing methods (FBL and FBA), optimizing and training models, designing and evaluating BehaVR adversaries, analyzing top features, etc.
 
+
+## Getting Started
+To navigate to the `Adversary` folder inside the `BehaVR` repository using the command line, you would use the following commands:
+
+```console
+$ cd Adversary
+```
+
 ## System Requirements
 We tested the code on a server with the following configuration (reference hardware):
 
@@ -25,16 +33,11 @@ $ conda env create -n behavr -f environment.yml
 $ conda activate behavr
 ```
 
-To navigate to the `Adversary` folder inside the `BehaVR` repository using the command line, you would use the following commands:
-
-```console
-$ cd Adversary
-```
-
 ## Usage
 
 - **Base Script:** `
-  - `~/run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios.
+  - `~/run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios. Please edit the files for corresponding adversarial settings.
+  
 - **Code:**
   - `~/Input_data.py`: Contains functions for loading and preprocessing input data from different sensor groups: BM (Body Motion), EG (Eye Gaze), HJ (Hand Joint), and FE (Facial Expression).
   - `~/model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
@@ -43,6 +46,16 @@ $ cd Adversary
   - `~/plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
   - `~/sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
+optional arguments:
+```
+--help                  Show this help message and exit
+--SG                    The sensor group-BM/FE/EG/HJ
+--adv                   Type of Adversary: App-App Adversary, emotion-Identification using                               facial emotion, Sensor_fusion-Sensor Group Model Ensemble, OW-Open World                         Setting, Zero-Day-Zero-Day Settings.
+--data_process          FBA or FBL
+--feature_elim          Eliminating top features (Figure 9 Evaluation)   
+--OW                    If openworld setting is true
+
+```
 ## Running Code
 To run the code, please run the commands on your terminal based on the type of BehaVR adversary and sensor group. For example, to run an app adversary model on the Facial Expression (FE) sensor group on the first 15 apps, where your chosen model is Random Forest, run the following command in the terminal:
 
