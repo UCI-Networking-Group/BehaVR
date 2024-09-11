@@ -77,11 +77,11 @@ In the terminal, when running `main.py`, you can use the following arguments. Th
 
 ```
 ## Running Code
-To run the code, please run the commands on your terminal based on the type of BehaVR adversary and sensor group. For example, to run an app adversary model on the Facial Expression (FE) sensor group on the first 15 apps, where your chosen model is Random Forest, run the following command in the terminal:
+To run the code, please run the commands on your terminal and change the arguments based on the type of BehaVR adversary and sensor group:
 
 ```console
 $ cd code
-$ python main.py 
+$ python main.py --argument1 --argument2
 ```
 Or, you can simply change your command in the run.py and run the following command in the terminal:
 
