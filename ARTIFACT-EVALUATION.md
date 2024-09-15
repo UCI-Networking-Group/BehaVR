@@ -44,17 +44,18 @@ $ cd BehaVR
 - **BehaVR Data Collection**:
    - This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper (see Section 3.1 in the paper).
    - To go to the `Data-collection` folder, use the following command: 
-    ```console
-     $ cd Data-collection
-      ``` 
+   
+```console
+$ cd Data-collection
+``` 
    - Follow necessary steps in Data-collection README for environment set-up to collect data.
    
 - **BehaVR Data Processing**:
    - This module outlines the steps to convert time series data into feature blocks for further feature engineering (see Section 4.1.1 and 4.1.2 in the paper).
    - To go to the `Data-processing` folder, use the following command: 
-    ```console
-     $ cd Data-processing
-      ``` 
+```console
+$ cd Data-processing
+``` 
    - Follow the necessary steps for environment setup to process time series data.
 
 - **BehaVR Adversaries**:
