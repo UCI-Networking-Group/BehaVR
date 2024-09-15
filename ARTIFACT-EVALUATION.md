@@ -11,73 +11,63 @@ Requested Badge: **Available**
  **Overview:**
 This repository contains BehaVR, a framework designed to analyze unique user identification using 20 commercial VR apps (See Section 2.3 in the main paper for details about selected apps) using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper BehaVR:User Identification Based on VR Sensor Data. Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework. 
 
-**BehaVR Pipeline:**
- BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data processing, and BehaVR Adversaries.
-
-- **BehaVR Data Collection**:
-   - This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper (see Section 3.1 in the paper).
-   - Go to the `Data-collection` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
-
-- **BehaVR Data Processing**:
-   - This module outlines the steps to convert time series data into feature blocks for further feature engineering (see Section 4.1.1 and 4.1.2 in the paper).
-   - Go to the `Data-processing` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
-
-- **BehaVR Adversaries**:
-   - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5 in the paper).
-   - Go to the `Adversary` folder and follow the necessary steps for system requirements, environment setup and find relevent code in this folder.
-
 ### Security/Privacy Issues and Ethical Concerns (All badges)
 None.
 
 ## Basic Requirements (Only for Functional and Reproduced badges)
-Describe the minimal hardware and software requirements of your artifact and estimate the compute time and storage required to run the artifact.
+For detailed system requirements, please refer to the README files in their respective folders.
 
 ### Hardware Requirements
-If your artifact requires specific hardware to be executed, mention that here.
-Provide instructions on how a reviewer can gain access to that hardware through remote access, buying or renting, or even emulating the hardware.
-Make sure to preserve the anonymity of the reviewer at any time.
+For detailed system requirements, please refer to the README files in their respective folders.
 
 ### Software Requirements
-Describe the OS and software packages required to evaluate your artifact.
-This description is essential if you rely on proprietary software or software that might not be easily accessible for other reasons.
-Describe how the reviewer can obtain and install all third-party software, data sets, and models.
+For detailed system requirements, please refer to the README files in their respective folders.
 
 ### Estimated Time and Storage Consumption
-Provide an estimated value for the time the evaluation will take and the space on the disk it will consume. 
-This helps reviewers to schedule the evaluation in their time plan and to see if everything is running as intended.
-More specifically, a reviewer, who knows that the evaluation might take 10 hours, does not expect an error if, after 1 hour, the computer is still calculating things.
+For detailed regarding estimated time and storage consumption, please refer to the README files in their respective folders.
 
 ## Environment 
-In the following, describe how to access our artifact and all related and necessary data and software components.
-Afterward, describe how to set up everything and how to verify that everything is set up correctly.
 
 ### Accessibility (All badges)
-Describe how to access your artifact via persistent sources.
-Valid hosting options are institutional and third-party digital repositories.
-Do not use personal web pages.
-For repositories that evolve over time (e.g., Git Repositories ), specify a specific commit-id or tag to be evaluated.
-In case your repository changes during the evaluation to address the reviewer's feedback, please provide an updated link (or commit-id / tag) in a comment.
+- Codebase: https://github.com/UCI-Networking-Group/BehaVR/tree/main
+- Associated Artifacts: 
 
 ### Set up the environment (Only for Functional and Reproduced badges)
-Describe how the reviewers should set up the environment for your artifact, including downloading and installing dependencies and the installation of the artifact itself.
-Be as specific as possible here.
-If possible, use code segments to simply the workflow, e.g.,
+To clone the repository and navigate into the project folder, run the following commands:
 
-```bash
-git clone git@my_awesome_artifact.com/repo
-apt install libxxx xxx
-```
-Describe the expected results where it makes sense to do so.
+```console
+$ git clone https://github.com/UCI-Networking-Group/BehaVR.git
+$ cd BehaVR
+``` 
+ BehaVR experiments consist of three parts: BehaVR Data collection, BehaVR Data processing, and BehaVR Adversaries.
+
+- **BehaVR Data Collection**:
+   - This module outlines the steps required to collect BehaVR data from the 20 apps discussed in the paper (see Section 3.1 in the paper).
+   - To go to the `Data-collection` folder, use the following command: 
+    ```console
+     $ cd Data-collection
+      ``` 
+   - Follow necessary steps in Data-collection README for environment set-up to collect data.
+   
+- **BehaVR Data Processing**:
+   - This module outlines the steps to convert time series data into feature blocks for further feature engineering (see Section 4.1.1 and 4.1.2 in the paper).
+   - To go to the `Data-processing` folder, use the following command: 
+    ```console
+     $ cd Data-processing
+      ``` 
+   - Follow the necessary steps for environment setup to process time series data.
+
+- **BehaVR Adversaries**:
+   - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5 in the paper).
+   - Go to the `Adversary` folder by using following command: 
+       ```console
+     $ cd Adversary
+      ```
+   - Follow the necessary steps in Adversary README for environment setup to train and evaluate BehaVR adversaries.
 
 ### Testing the Environment (Only for Functional and Reproduced badges)
-Describe the basic functionality tests to check if the environment is set up correctly.
-These tests could be unit tests, training an ML model on very low training data, etc..
-If these tests succeed, all required software should be functioning correctly.
-Include the expected output for unambiguous outputs of tests.
-Use code segments to simplify the workflow, e.g.,
-```bash
-python envtest.py
-```
+For detailed regarding Testing the environment, please refer to the README files in their respective folders.
+
 
 ## Artifact Evaluation (Only for Functional and Reproduced badges)
 This section includes all the steps required to evaluate your artifact's functionality and validate your paper's key results and claims.
@@ -114,8 +104,7 @@ python experiment_1.py
 ...
 
 ## Limitations (Only for Functional and Reproduced badges)
-Describe which tables and results are included or are not reproducible with the provided artifact.
-Provide an argument why this is not included/possible.
+Due to IRB restrictions, we are unable to share the original BehaVR dataset. However, we have provided all the necessary code to collect the BehaVR dataset, process the time series data, and train/evaluate BehaVR adversaries to reproduce all the tables and plots featured in the paper.
 
 ## Notes on Reusability (Only for Functional and Reproduced badges)
 First, this section might not apply to your artifacts.
