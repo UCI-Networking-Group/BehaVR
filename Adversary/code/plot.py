@@ -9,17 +9,41 @@ from matplotlib import pyplot as plt
 import seaborn as sn
 from preprocess import app_groups_name
 
+#import library to get arguments from the terminal
+import argparse
+
+
+#initialize arguments
+parser = argparse.ArgumentParser()
+
+#the sensor group needs to be plotted
+parser.add_argument('--SG', type=str, help='The sensor group-BM/FE/EG/HJ',default='BM')
+
+#app groups
+parser.add_argument(
+    '--g',
+    type=int,
+    nargs='+',
+    help='The list of apps from each group we are considering',
+    default=[15, 5, 19, 6, 17, 7, 1, 4]  # Default list of apps [15, 5, 19, 6, 17, 7, 1, 14, 4]
+)
+
+#Total number of apps we are analyzing, in BehaVR it's 20
+parser.add_argument('--num_app', type=int, help='Total number of apps',default=20)
+
+args = parser.parse_args()
 
 #initialization
 
 #column name for app group
-clm=['Social','Archery','Flight Sim.','Golfing','Int.Nav.','Knu.Walk.','Rhythm','Shooting','Teleport.']
+clm=['Social','Flight Sim.','Golfing','Int.Nav.','Knu.Walk.','Rhythm','Shooting & Archery','Teleport.']
 
-#Different color for different app group
-clr=['r','lime','b','y','orange','mediumslateblue','c','g','m']
+#Different color for different app groups
+clr=['r','lime','y','orange','mediumslateblue','c','g','m']
 
 #Apps chosen from different group
-g=[15,5,19,....]
+g=args.g
+print(f"Apps chosen from different groups: {g}")
 
 #call app groups name
 gname=app_groups_name()
@@ -28,7 +52,10 @@ gname=app_groups_name()
 g_n=len(gname)
 
 # Set this to the number of apps you need
-num_apps = 20 #number of total apps
+num_apps = args.num_app #number of total apps
+
+#define the directory to save results
+directory='.../VR/BehaVR/results/graphs'
 
 #Define x_axis for each app
 x_axis = [f'$a_{i+1}$' for i in range(num_labels)]
@@ -56,8 +83,7 @@ plt.ylabel("Identification Accuracy",fontsize=18)
 plt.legend(loc=4,fontsize=15)
 
 #save figure
-directory='.../VR/BehaVR/results/graphs'
-filename='AppAdv_Acc_motion20_cmp_block.pdf'
+filename=SG+'Identification_Accuracy.pdf'
 filepath = os.path.join(directory, filename)
 test0.savefig(filepath)
 
@@ -79,8 +105,7 @@ plt.ylabel("Identification Accuracy",fontsize=18)
 plt.legend(loc=4,fontsize=16)
 
 #save figure
-directory='.../VR/BehaVR/results/graphs'
-filename='AppAdv_Acc_motion20_cmp.pdf'
+filename=SG+'compare.pdf'
 filepath = os.path.join(directory, filename)
 test1.savefig(filepath)
 
@@ -100,8 +125,7 @@ plt.legend(loc=4,fontsize=15)
 
 
 #save figure
-directory='.../VR/BehaVR/results/graphs'
-filename='AppAdv_Acc_motion20_cmp_block.pdf'
+filename=SG+'FBL_FBA_compare.pdf'
 filepath = os.path.join(directory, filename)
 test2.savefig(filepath)
 
@@ -125,8 +149,7 @@ plt.legend(ncol=2,loc='lower right',fontsize=10)
 
 
 #save figure
-directory='.../VR/BehaVR/results/graphs'
-filename='AppAdv_AccBlockPerUser_Motion.pdf'
+filename=SG+'subsession_time.pdf'
 filepath = os.path.join(directory, filename)
 test3.savefig(filepath)
 
@@ -157,7 +180,6 @@ plt.tight_layout()
 
 
 #save figure
-directory='.../VR/BehaVR/results/graphs'
-filename='HeatMap.pdf'
+filename=SG+'HeatMap.pdf'
 filepath = os.path.join(directory, filename)
 test4.savefig(filepath)
