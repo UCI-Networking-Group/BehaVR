@@ -12,7 +12,7 @@ This repository contains BehaVR, a framework designed to analyze unique user ide
 Please cite our paper as follows:
 
 ```bibtex
-@inproceedings{,
+@inproceedings{jarin2025behavr,
   title     = {BehaVR: User Identification Based on VR Sensor Data},
   author    = {Jarin, Ismat and Duan, Yu and Trimananda, Rahmadi and Cui, Hao 
   and Elmalaki, Salma and Markopoulou, Athina},
