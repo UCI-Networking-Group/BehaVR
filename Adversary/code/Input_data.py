@@ -13,28 +13,25 @@ def Final_feature(SG,OW,Data_process):
     #data1=data with block ratio 1,data2=data with block ratio 0.5, data_05=data with block ratio 2
     
     #Define the data processing folder and call data corresponding to sensor group
-    base_dir = f'.../VR/data/'+SG+'/{Data_process}/'
+    base_dir = f'.../VR/data/'+SG+'/'
     
     #Define the data processing folder based on your local directory and call data corresponding to sensor group
-    base_dir_OW=f'.../VR/data/OW/'+SG+'/{Data_process}/'
+    base_dir_OW=f'.../VR/data/OW/'+SG+'/'
 
     #Body Motion Data
     if SG=='BM':
-        #If open world setting is not true
-        if OW==False:
-            #call abstracted Body Motion data for 20 users
-            data2 =pd.read_csv(f'{base_dir}f.csv', sep=',')
-            data1 = pd.read_csv('{base_dir}f.csv', sep=',')
-            data_05 = pd.read_csv('{base_dir}f.csv', sep=',')
-        
-        #If open world setting is true
+        # If open-world setting is not true
+        if OW == False:
+            # Call abstracted Body Motion data for 20 users
+            data2 = pd.read_csv(f'{base_dir}SG1_FBN_r2_feature.csv', sep=',')
+            data1 = pd.read_csv(f'{base_dir}SG1_FBN_r1_feature.csv', sep=',')
+            data_05 = pd.read_csv(f'{base_dir}SG1_FBN_r0.5_feature.csv', sep=',')
         else:
-            print("Open World Data as Input:")
-            #call abstracted Body Motion for open world settings
-            data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
-            data1 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
-            data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
-            
+            # If open-world setting is true, use the open-world base directory
+            data2 = pd.read_csv(f'{base_dir_OW}SG1_FBN_r2_feature.csv', sep=',')
+            data1 = pd.read_csv(f'{base_dir_OW}SG1_FBN_r1_feature.csv', sep=',')
+            data_05 = pd.read_csv(f'{base_dir_OW}SG1_FBN_r0.5_feature.csv', sep=',')
+                
 
         #preprocess the data
         datar1=change_nameH(data1)
@@ -57,7 +54,7 @@ def Final_feature(SG,OW,Data_process):
         else:
             print("Open World Data as Input:")
             data2 =pd.read_csv(f'{base_dir_OW}f.csv', sep=',') #collect openworld data
-            data1 = pd.read_csv(f'{base_dir_OW}f.csv'', sep=',')
+            data1 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
             data_05 = pd.read_csv(f'{base_dir_OW}f.csv', sep=',')
         
         datar1=change_nameE(data1)

@@ -88,13 +88,18 @@ num_user=args.num_user
 sk = list(range(1, num_user + 1))
 
 #block length ratios
-rp=args.ratio #choose block length, 0=0.5, 1=1, 2=2
+rp=[args.ratio] #choose block length, 0=0.5, 1=1, 2=2
 
 # Initialize an array to store the ratio values
-rp_arr=list(range(1, rp))
+if (len(rp)==1):
+    rp_arr=rp
+    print("chosen block ratio is:",rp_arr)
+else:
+    rp_arr=list(range(len(rp)+1))
+    print("chosen block ratio is:",rp_arr)
 
 # Initialize an array to hold the index values of maximum accuracy
-index_rp=np.zeros(g_id)
+index_rp=np.zeros(len(g_id))
 
 #block length ratios for sensor fusion
 rp1=args.r1
@@ -106,7 +111,7 @@ rt=args.rt
 # Remove specific users from the existing user pool
 if (rt=='t'):
     for p in Non_users:
-    sk.remove(p)
+        sk.remove(p)
 
 # Argument to specify the type of adversary to be used
 adv=args.adv
@@ -171,7 +176,7 @@ final_features=[]
 
 #if rp_arr contains only one fixed value, block ratio is fixed
 if len(rp_arr)==1:
-    opt_rp=rp
+    opt_rp=rp[0]
 
 #if rp_arr contains multiple values, find the optimized block ratio that provides the highest identification accuracy
 else:
