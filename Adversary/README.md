@@ -104,7 +104,7 @@ $ python main.py --SG='FE' --num_app=20  --num_user=20 --adv='App' --Model='RF'
 - **Example 2**: To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
 
 ```console
-$ python main.py --SG='BM' --num_app=20  --num_user=20 --adv='emotion' --Model='RF'
+$ python main.py --SG='FE' --num_app=20  --num_user=20 --adv='emotion' --Model='RF'
 ```
 
 - **Example 3**: To evaluate Zero-day scenarios with 20 users and the Facial Expression (FE) sensor group using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:

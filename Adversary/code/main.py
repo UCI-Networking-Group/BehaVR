@@ -288,7 +288,7 @@ if (adv=='App'):
 
 #Adversarial settings=Facial Emotions
 elif (adv=='emotion'): #adversary consider particular emotions for identification
-    data=Final_feature('FE',OW,data_process) #call input processed data (containing final features per block)
+    data=Final_feature(SG,OW,data_process) #call input processed data (containing final features per block)
     for j in range(len(g_id)):
       for i in range(n_emo):
          emo,_=Emotion_units()
