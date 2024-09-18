@@ -95,12 +95,31 @@ $ python run.py
 ```console
 $ python main.py --SG='BM' --num_app=20  --num_user=20 --adv='App' --Model='RF'
 ```
-- **Example 2**: To evaluate Zero-day scenarios with 20 users and the Facial Expression (FE) sensor group using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
+Alternatively, to use the Facial Expression sensor group (Section 5.4 in the main paper), run:
 
 ```console
-$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='RandomForest'
+$ python main.py --SG='FE' --num_app=20  --num_user=20 --adv='App' --Model='RF'
 ```
-- **Example 3**: To ensemble the Hand Joint (HJ) and Eye Gaze (EG) sensor group models using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command:
+
+- **Example 2**: To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
+
+```console
+$ python main.py --SG='BM' --num_app=20  --num_user=20 --adv='emotion' --Model='RF'
+```
+
+- **Example 3**: To evaluate Zero-day scenarios with 20 users and the Facial Expression (FE) sensor group using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
+
+```console
+$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='RF'
+```
+
+Alternatively, to use the XGBoost algorithm, run:
+
+```console
+$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='XGB'
+```
+
+- **Example 4**: To ensemble the Hand Joint (HJ) and Eye Gaze (EG) sensor group models using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command:
 
 ```console
 $ python main.py --SG1='HJ' --SG2='EG' --num_user=20 --adv='Sensor_fusion' --Model='RF'
