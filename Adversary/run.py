@@ -1,16 +1,33 @@
-#@ijarin
-#script to run behavr 
+# @ijarin
+# script to run BehaVR
 import os
+import argparse
+
+# Set up argument parsing
+parser = argparse.ArgumentParser(description='Run BehaVR with specified adversary and model.')
+parser.add_argument('--adv', type=str, required=True, help='Specify the adversary')
+parser.add_argument('--model', type=str, required=True, help='Specify the model, RF or XGB')
+
+args = parser.parse_args()
 
 # Relative path to the main.py script
-script_path = '..../Adversary/code/main.py'
+script_path = '../Adversary/code/main.py'
 
-#to run an app adversary model on Facial Expression or FE sensor group on first 15 apps, where your chosen model is Random Forest, run the following command on the terminal:
-os.system(f"python {script_path} --SG='BM'--num_app=15 --adv='App' --Model='RF'")
+# App adversary model with all sensor groups
+if args.adv == 'App':
+    SG = ['BM', 'FE', 'EG', 'HJ']
+    for sg in SG:
+        os.system(f"python {script_path} --SG={sg} --Model='{args.model}' --adv='{args.adv}'")
 
- '''
-#If we want to run the command on App adversary under BehaVR assumptions on all four sensor data
-arrSG=['BM','FE','EG','HJ']
-for sg in arrSG:
-    os.system(f"python {script_path} --SG={sg} --Model='RF' --adv='App'")
-'''
+
+# Identification with Facial Emotion Expression with FE sensor group
+if args.adv == 'emotion':
+    SG = ['FE']
+    for sg in SG:
+        os.system(f"python {script_path} --SG={sg} --Model='{args.model}' --adv='{args.adv}'")
+
+# App adversary model with all sensor groups
+if args.adv == 'Zero-day':
+    SG = ['BM', 'FE', 'EG', 'HJ']
+    for sg in SG:
+        os.system(f"python {script_path} --SG={sg} --Model='{args.model}' --adv='{args.adv}'")
