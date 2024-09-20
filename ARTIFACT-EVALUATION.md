@@ -71,90 +71,13 @@ For detailed regarding Testing the environment, please refer to the README files
 
 
 ## Artifact Evaluation (Only for Functional and Reproduced badges)
+While we are unable to share the BehaVR dataset at this time, reviewers who can collect and process their own dataset to reproduce the experiments can follow the steps outlined in the respective README folder
 
 ### Main Results and Claims
-
-#### Main Result 1: BehaVR Data Collection
-In Section 3, we outline the BehaVR data collection process from real-world VR applications. Specifically:
-- Utilizing the ALVR and SteamVR setup for data collection with the Oculus Quest Pro headset (Section 3.1)
-- Conducting data collection from study participants (Section 3.2)
-
-We will demonstrate how these processes were carried out in Experiment 1.
-
-#### Main Result 2: Time Series Data Processing 
-Sections 4.1.2 and 4.1.3 illustrate the processing of raw sensor data into feature blocks, transforming time series data to prepare for further feature engineering. 
-
-We will demonstrate how these steps were implemented in Experiment 2.
-
-#### Main Result 3: Identification results for BehaVR Adversaries
-In Section 5, we detail user identification and related evaluations based on various adversarial settings. Specifically:
-
-- User Identification with Sensor Groups, including Body Motion, Eye Gaze, Hand Joints, and Facial Expressions for the App adversary (Sections 5.1–5.4). This will be illustrated in Experiment 3.
-- User identification via Facial Emotion Expression, discussed in Section 5.4.1 and this will be illustrated in Experiment 4.
-- User identification in Open-World scenarios (Section 5.5.1) and this will be illustrated in Experiment 5.
-- User identification in zero-day scenarios (Section 5.5.2) and this will be illustrated in Experiment 6.
-
-#### Main Result 4: Feature Analysis
-Top features for identification concerning app and device adversaries (Figure 8 and Table 10 in main paper) will be illustrated in Experiment 7.
+For main results and claims, please refer to the README.md files in their respective folders.
 
 ### Experiments 
-
-#### Experiment 1: BehaVR Data Collection
-Once you start SteamVR, the ALVR server, and the (modified) ALVR client, you may use the following scripts to collect VR data.
-
-`collect_data.sh` uses `adb logcat` to capture sensor readings and saves them into a file. Use it as follows:
-
-```
-$ collect_data.sh -f capture
-```
-
-`generate_all_csvs.sh` generates individual CSV files that record each type of sensor data:
-
-```
-$ generate_all_csvs.sh -f capture
-```
-
-This will generate a folder `capture/` containing the output CSV files.
-
-
-#### Experiment 2: Time Series Data Processing
-...
-
-#### Experiment 3: User Identification with Sensor Groups
-To evaluate the identification accuracy for all sensor groups and app adversary using the Random Forest model, with results from 20 apps and 20 users (refer to Section 5.1-5.4 in the main paper), run the following command:
-
-```console
-$ python run.py --adv='App' --Model='RF'
-```
-Alternatively, to use the XBoost Model, run:
-
-```console
-$ python run.py --adv='App' --Model='XGB'
-```
-
-#### Experiment 4:
-To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
-
-```console
-$ python run.py --adv='emotion' --Model='RF'
-```
-Alternatively, to use the XBoost Model, run:
-
-```console
-$ python run.py --adv='emotion' --Model='XGB'
-```
-
-#### Experiment 6:
-To evaluate Zero-day scenarios with 20 users and with all sensor groups using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
-
-```console
-$ python run.py --adv='Zero-day' --Model='RF'
-```
-Alternatively, to use the XBoost Model, run:
-
-```console
-$ python run.py --adv='Zero-day' --Model='XGB'
-```
+For experiments, please refer to the README files in their respective folders.
 
 ## Limitations (Only for Functional and Reproduced badges)
 Due to IRB restrictions, we are unable to share the original BehaVR dataset. However, we have provided all the necessary code to collect the BehaVR dataset, process the time series data, and train/evaluate BehaVR adversaries to reproduce all the tables and plots featured in the paper.
