@@ -26,15 +26,15 @@ $ conda activate behavr-data
 - **Folder Reorganization Script:**
   - `./folder-reorganization.ipynb`: Reorganizes the data files so that each folder contains one sensor group.
 
-- **Block Division Code:**
-  - `/FBA`: Contains 4 Jupyter notebooks using the Fixed Block Amount (FBA) method for different sensor groups:
+- **Block Division and Plot:**
+  - `/FBA`: Contains 5 Jupyter notebooks using the Fixed Block Amount (FBA) method for different sensor groups:
     - `FBA-SG11.ipynb`: FBA method for Head (Body Motion sensor group).
     - `FBA-SG12.ipynb`: FBA method for Controllers (Body Motion sensor group).
     - `FBA-SG2.ipynb`: FBA method for Eye Gaze sensor group.
     - `FBA-SG3.ipynb`: FBA method for Hand Joints sensor group.
     - `FBA-SG4.ipynb`: FBA method for Facial Expression sensor group.
   
-  - `/FBL`: Contains 4 Jupyter notebooks using the Fixed Block Length (FBL) method for different sensor groups:
+  - `/FBL`: Contains 5 Jupyter notebooks using the Fixed Block Length (FBL) method for different sensor groups:
     - `FBL-SG11.ipynb`: FBL method for Head (Body Motion sensor group).
     - `FBL-SG12.ipynb`: FBL method for Controllers (Body Motion sensor group).
     - `FBL-SG2.ipynb`: FBL method for Eye Gaze sensor group.
