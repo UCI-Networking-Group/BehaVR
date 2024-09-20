@@ -21,6 +21,12 @@ We tested the code on a server with the following configuration (reference hardw
 
 A GPU is not required to run the machine learning models, however, we highly recommend using one to speed up the process.
 
+### Estimated Time and Storage Consumption
+
+Without a GPU, all experiments required approximately 25-30 hours of runtime. With the GPU set up as we described in the system requirements, the runtime may range between 6-7 hours.
+
+
+
 ## Environment Setup
 
 All the code in this repository is written in Python, and we use Conda to manage the Python dependencies.
