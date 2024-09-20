@@ -36,20 +36,20 @@ $ conda activate behavr-data
   - `~/data/result`: Stores results after block division and abstraction.
  
 
-## Examples
-- **Example 1**: To process and abstract Eye Gaze(EG) data using FBA method, please go through following steps:
-  - Step 1: Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Eye Gaze data from all data collection will be in `~/data/reorg/SG2`.
-  - Step 2: Open `FBN-SG2.ipynb` and set the parameter `r`(block ratio) and `game_id_list`(app id that involved in the data collection), then run `FBN-SG2.ipynb`.
-  - Step 3: Cleaned sensor data will appear in `~/data/clean/SG2` and data abstraction results will appear in `~/data/result`.
+## Experiments 
+- **Experiment 1**: To process and abstract Eye Gaze(EG) data using FBA method, please go through following steps:
+  - Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Eye Gaze data from all data collection will be in `~/data/reorg/SG2`.
+  - Open `FBN-SG2.ipynb` and set the parameter `r`(block ratio) and `game_id_list`(app id that involved in the data collection), then run `FBN-SG2.ipynb`.
+  -  Cleaned sensor data will appear in `~/data/clean/SG2` and data abstraction results will appear in `~/data/result`.
 
-- **Example 2**: To process and abstract Body Motion(BM) data using FBA method, please go through following steps:
+- **Experiment 2**: To process and abstract Body Motion(BM) data using FBA method, please go through following steps:
 
-  - Step 1: Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Body Motion data from all data collection will be in `~/data/reorg/SG11`(BM-Head) and `~/data/reorg/SG12`(BM-Hand) .
-  - Step 2: Open `FBN-SG11.ipynb` and `FBN-SG12.ipynb`, set the parameter `r`(block ratio) and `game_id_list`(app id that involved in the data collection), then run `FBN-SG11.ipynb` first and `FBN-SG12.ipynb` second.
-  - Step 3: Cleaned sensor data will appear in `~/data/clean/SG11` and `~/data/clean/SG12`, data abstraction results will appear in `~/data/result`.
+  - Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Body Motion data from all data collection will be in `~/data/reorg/SG11`(BM-Head) and `~/data/reorg/SG12`(BM-Hand) .
+  -  Open `FBN-SG11.ipynb` and `FBN-SG12.ipynb`, set the parameter `r`(block ratio) and `game_id_list`(app id that involved in the data collection), then run `FBN-SG11.ipynb` first and `FBN-SG12.ipynb` second.
+  - Cleaned sensor data will appear in `~/data/clean/SG11` and `~/data/clean/SG12`, data abstraction results will appear in `~/data/result`.
 
-- **Example 3**: To process and abstract Body Motion(BM) data using FBL method, please go through following steps:
+- **Experiment 3**: To process and abstract Body Motion(BM) data using FBL method, please go through following steps:
 
-  - Step 1: Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Body Motion data from all data collection will be in `~/data/reorg/SG11`(BM-Head) and `~/data/reorg/SG12`(BM-Hand) .
-  - Step 2: Run `FBA-SG11.ipynb` and `FBA-SG12.ipynb` data cleaning related codes, then cleaned data will appear in `~/data/clean/SG11` and `~/data/clean/SG12`.
-  - Step 3: Open `FBL-SG11.ipynb` and `FBL-SG12.ipynb`, set the parameter `TS`(time slot) , then run `FBL-SG11.ipynb` first and `FBL-SG12.ipynb` second. Data abstraction results will appear in `~/data/result`.
+  - Create data directory and put the raw time series into `~/data/raw` with sub-folder name: `uid_aid_rid`, then run `folder-reorganization.ipynb`. Raw Body Motion data from all data collection will be in `~/data/reorg/SG11`(BM-Head) and `~/data/reorg/SG12`(BM-Hand) .
+  -  Run `FBA-SG11.ipynb` and `FBA-SG12.ipynb` data cleaning related codes, then cleaned data will appear in `~/data/clean/SG11` and `~/data/clean/SG12`.
+  -  Open `FBL-SG11.ipynb` and `FBL-SG12.ipynb`, set the parameter `TS`(time slot) , then run `FBL-SG11.ipynb` first and `FBL-SG12.ipynb` second. Data abstraction results will appear in `~/data/result`.
