@@ -119,7 +119,7 @@ Alternatively, to use the XBoost Model, run:
 $ python run.py --adv='App' --Model='XGB'
 ```
 
-#### Experiment 2:
+#### Experiment 2: User Identification with Facial Emotion
 To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
 
 ```console
@@ -131,7 +131,7 @@ Alternatively, to use the XBoost Model, run:
 $ python run.py --adv='emotion' --Model='XGB'
 ```
 
-#### Experiment 3:
+#### Experiment 3: User Identification with Multiple Sensor Group Ensemble
 To ensemble multiple sensor group models using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command: 
 
 ```console
@@ -143,7 +143,7 @@ Alternatively, to use the XBoost Model, run:
 $ python run.py --adv='Sensor_fusion' --Model='XGB'
 ```
 
-#### Experiment 4:
+#### Experiment 4: User Identification in Open-World Scenario
 To evaluate Open-world scenario with all sensor groups using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command: 
 
 ```console
@@ -156,7 +156,7 @@ $ python run.py --adv='OW' --Model='XGB'
 ```
 
 
-#### Experiment 5:
+#### Experiment 5: User Identification in Zero-Day Scenario
 To evaluate Zero-day scenarios with 20 users and with all sensor groups using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
 
 ```console
