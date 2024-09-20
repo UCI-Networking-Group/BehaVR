@@ -23,7 +23,7 @@ A GPU is not required to run the machine learning models, however, we highly rec
 
 ### Estimated Time and Storage Consumption
 
-Without a GPU, all experiments required approximately 25-30 hours of runtime. With the GPU set up as we described in the system requirements, the runtime may range between 6-7 hours.
+Without a GPU, all experiments required approximately 35-40 hours of runtime. With the GPU set up as we described in the system requirements, the runtime may range between 8-10 hours.
 
 
 
@@ -56,7 +56,7 @@ $ ./env-test.sh
     - `model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
     - `preprocess.py`: Contains necessary functions for data preprocessing, feature engineering, loading train/test data, and adversarial conditions.
     - `main.py`: Main file that generates output results depending on the type of adversaries. `main.py` contains all the variable parameters to run the model in different settings.
-    - `plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
+    - `plot.py`: This script includes code for plotting evaluation graphs. The code can be easily adapted to any sensor group.
     - `sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
 - **Adversarial arguments:**
