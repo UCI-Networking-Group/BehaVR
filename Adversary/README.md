@@ -47,16 +47,17 @@ $ ./env-test.sh
 
 ## Usage
 
-- **Base Script:** `
-  - `/run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios. Please edit the files for corresponding adversarial settings.
-  
+- **Base Script:**
+  - `./run.py`: Automatically runs the main file and adjusts for different adversarial scenarios, like app adversary, open-world, or zero-day scenarios. Please edit the files for corresponding adversarial settings.
+
 - **Code:**
-  - `/code/Input_data.py`: Contains functions for loading and preprocessing input data from different sensor groups: BM (Body Motion), EG (Eye Gaze), HJ (Hand Joint), and FE (Facial Expression).
-  - `/code/model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
-  - `/code/preprocess.py`: Contains necessary functions for data preprocessing, feature engineering, loading train/test data, and adversarial conditions.
-  - `/code/main.py`: Main file that generates output results depending on the type of adversaries. `main.py` contains all the variable parameters to run the model in different settings.
-  - `/code/plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
-  - `/code/sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
+  - `code/`
+    - `Input_data.py`: Contains functions for loading and preprocessing input data from different sensor groups: BM (Body Motion), EG (Eye Gaze), HJ (Hand Joint), and FE (Facial Expression).
+    - `model.py`: Contains necessary functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
+    - `preprocess.py`: Contains necessary functions for data preprocessing, feature engineering, loading train/test data, and adversarial conditions.
+    - `main.py`: Main file that generates output results depending on the type of adversaries. `main.py` contains all the variable parameters to run the model in different settings.
+    - `plot.py`: This script includes code for plotting evaluation graphs using body motion data. The code can be easily adapted to other sensor groups.
+    - `sample_plot.py`: Plots some sample graphs that can be found in the paper. We used saved results to plot those graphs.
 
 - **Adversarial arguments:**
 In the terminal, when running `main.py`, you can use the following arguments. These arguments depend on the adversarial settings, but are optional in a sense that the `main.py` can automatically execute with default settings.
