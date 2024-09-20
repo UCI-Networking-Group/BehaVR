@@ -33,6 +33,12 @@ $ conda env create -n behavr -f environment.yml
 $ conda activate behavr
 ```
 
+### Testing the Environment 
+For testing the environment, please run the following command in the console: 
+```console
+./env-test.sh
+```
+
 ## Usage
 
 - **Base Script:** `
@@ -89,44 +95,75 @@ Or, you can simply change your command in the run.py and run the following comma
 $ python run.py
 ```
 
-## Examples
-- **Example 1**: To evaluate the identification accuracy for the Body Motion (BM) sensor group and app adversary using the Random Forest model, with results from 20 apps and 20 users (refer to Section 5.1 in the main paper), run the following command:
+## Main Results and Claims
+
+In Section 5, we detail user identification and related evaluations based on various adversarial settings. Specifically:
+
+- User Identification with Sensor Groups, including Body Motion, Eye Gaze, Hand Joints, and Facial Expressions for the App adversary (Sections 5.1–5.4). This will be illustrated in Experiment 1.
+- User identification via Facial Emotion Expression, discussed in Section 5.4.1 and this will be illustrated in Experiment 2.
+- User identification via Sensor Group Model Ensemble (Section 5.6.3) and this will be illustrated in Experiment 3. 
+- User identification in Open-World scenarios (Section 5.5.1) and this will be illustrated in Experiment 4.
+- User identification in zero-day scenarios (Section 5.5.2) and this will be illustrated in Experiment 5.
+
+### Experiments 
+
+#### Experiment 1: User Identification with Sensor Groups
+To evaluate the identification accuracy for all sensor groups and app adversary using the Random Forest model, with results from 20 apps and 20 users (refer to Section 5.1-5.4 in the main paper), run the following command:
 
 ```console
-$ python main.py --SG='BM' --num_app=20  --num_user=20 --adv='App' --Model='RF'
+$ python run.py --adv='App' --Model='RF'
 ```
-Alternatively, to use the Facial Expression sensor group (Section 5.4 in the main paper), run:
+Alternatively, to use the XBoost Model, run:
 
 ```console
-$ python main.py --SG='FE' --num_app=20  --num_user=20 --adv='App' --Model='RF'
-```
-
-- **Example 2**: To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
-
-```console
-$ python main.py --SG='FE' --num_app=20  --num_user=20 --adv='emotion' --Model='RF'
-```
-
-- **Example 3**: To evaluate Zero-day scenarios with 20 users and the Facial Expression (FE) sensor group using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
-
-```console
-$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='RF'
-```
-
-Alternatively, to use the XGBoost algorithm, run:
-
-```console
-$ python main.py --SG='FE' --num_user=20 --adv='Zero-Day' --Model='XGB'
+$ python run.py --adv='App' --Model='XGB'
 ```
 
-- **Example 4**: To ensemble the Hand Joint (HJ) and Eye Gaze (EG) sensor group models using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command:
+#### Experiment 2:
+To evaluate identification based on facial emotions with 20 users using the Random Forest model (refer to Sections 5.4.1 in the main paper), run the following command:
 
 ```console
-$ python main.py --SG1='HJ' --SG2='EG' --num_user=20 --adv='Sensor_fusion' --Model='RF'
+$ python run.py --adv='emotion' --Model='RF'
+```
+Alternatively, to use the XBoost Model, run:
+
+```console
+$ python run.py --adv='emotion' --Model='XGB'
 ```
 
-Alternatively, to use the XGBoost algorithm, run:
+#### Experiment 3:
+To ensemble multiple sensor group models using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command: 
 
 ```console
-$ python main.py --SG1='HJ' --SG2='EG' --num_user=20 --adv='Sensor_fusion' --Model='XGB'
+$ python run.py --adv='Sensor_fusion' --Model='RF'
+```
+Alternatively, to use the XBoost Model, run:
+
+```console
+$ python run.py --adv='Sensor_fusion' --Model='XGB'
+```
+
+#### Experiment 4:
+To evaluate Open-world scenario with all sensor groups using the Random Forest algorithm (refer to Section 5.5.3 in the main paper), run the following command: 
+
+```console
+$ python run.py --adv='OW' --Model='RF'
+```
+Alternatively, to use the XBoost Model, run:
+
+```console
+$ python run.py --adv='OW' --Model='XGB'
+```
+
+
+#### Experiment 5:
+To evaluate Zero-day scenarios with 20 users and with all sensor groups using the Random Forest model (refer to Sections 4.2 and 5.5.2 in the main paper), run the following command:
+
+```console
+$ python run.py --adv='Zero-day' --Model='RF'
+```
+Alternatively, to use the XBoost Model, run:
+
+```console
+$ python run.py --adv='Zero-day' --Model='XGB'
 ```
