@@ -2,6 +2,10 @@
 
 In BehaVR, we instrumented ALVR to intercept and record sensor data in the SteamVR + Meta Quest Pro setup (see Section 3.1 in the paper). We provide relevant code in this folder.
 
+### Estimated Time and Storage Consumption
+BehaVR data collection involves real-world participants and may require 5-6 hours per participant to gather data across 20 apps, as described in Section 3 of the main paper. The data collection process generates approximately 7.5 GB of time series data per user (for 20 apps) before any processing begins.
+
+
 ## Hardware Setup
 
 We set up the BehaVR data collection system with the following hardware:
