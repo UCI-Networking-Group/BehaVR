@@ -52,7 +52,7 @@ $ ./env-test.sh
 
 - **Adversarial Analysis and Feature Engineering:**
   - `code/`
-    - `Input_data.py`: Functions for loading and preprocessing input data from different sensor groups: BM (Body Motion), EG (Eye Gaze), HJ (Hand Joint), and FE (Facial Expression).
+    - `Input_data.py`: Functions for loading and preprocessing input data from different sensor groups: Body Motion (BM), Eye Gaze (EG), Hand Joint (HJ), and Facial Expression (FE).
     - `model.py`: Functions for tuning models, loading necessary models depending on the sensor group, and finding top features.
     - `preprocess.py`: Functions for data preprocessing, feature engineering, loading train/test data, and adversarial conditions.
     - `main.py`: Main file that generates output results depending on the type of adversaries. `main.py` contains all the variable parameters to run the model in different settings.
@@ -107,7 +107,7 @@ $ python run.py
 
 In Section 5, we detail user identification and related evaluations based on various adversarial settings. Specifically:
 
-- User Identification with Sensor Groups, including Body Motion, Eye Gaze, Hand Joints, and Facial Expressions for the App adversary (Sections 5.1–5.4). This will be illustrated in Experiment 1.
+- User Identification with Sensor Groups, including Body Motion (BM), Eye Gaze (EG), Hand Joints (HJ), and Facial Expressions (FE) for the App adversary (Sections 5.1–5.4). This will be illustrated in Experiment 1.
 - User identification via Facial Emotion Expression, discussed in Section 5.4.1 and this will be illustrated in Experiment 2.
 - User identification via Sensor Group Model Ensemble (Section 5.6.3) and this will be illustrated in Experiment 3. 
 - User identification in Open-World scenarios (Section 5.5.1) and this will be illustrated in Experiment 4.
