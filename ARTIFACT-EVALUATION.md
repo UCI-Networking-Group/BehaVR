@@ -12,10 +12,11 @@ Requested Badge: **Available**
 This repository contains BehaVR, a framework designed to analyze unique user identification using 20 commercial VR apps (See Section 2.3 in the main paper for details about selected apps) using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper BehaVR:User Identification Based on VR Sensor Data. Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework. 
 
 ### Security/Privacy Issues and Ethical Concerns (All badges)
-None.
+**Privacy Considerations**  
+The data collection involves real-world participants, and the sensor data may include sensitive information or user fingerprints. We kindly ask reviewers to ensure that proper consent and precautions are followed. 
 
 ## Basic Requirements (Only for Functional and Reproduced badges)
-For detailed system requirements, please refer to the README files in their respective folders.
+While we are unable to share the BehaVR dataset at this time and are requesting only the available batch, we have included all the necessary information to verify functionality and reproducibility of BehaVR. Reviewers can refer to the respective README folders for detailed hardware and software requirements if they are interested.
 
 ### Hardware Requirements
 For detailed system requirements, please refer to the README files in their respective folders.
@@ -48,7 +49,7 @@ $ cd BehaVR
 ```console
 $ cd Data-collection
 ``` 
-   - Follow necessary steps in Data-collection README.md for environment set-up to collect data.
+   - Follow necessary steps in Data-collection README for environment set-up to collect data.
    
 - **BehaVR Data Processing**:
    - This module outlines the steps to convert time series data into feature blocks for further feature engineering (see Section 4.1.1 and 4.1.2 in the paper).
@@ -56,7 +57,7 @@ $ cd Data-collection
 ```console
 $ cd Data-processing
 ``` 
-   - Follow the necessary steps for environment setup in README.md to process time series data.
+   - Follow the necessary steps for environment setup in README to process time series data.
 
 - **BehaVR Adversaries**:
    - This module outlines the necessary steps to design and evaluate BehaVR adversaries, including feature engineering and selection, model training, and evaluation (see Section 4.1.3-5 in the paper).
@@ -64,17 +65,17 @@ $ cd Data-processing
        ```console
      $ cd Adversary
       ```
-   - Follow the necessary steps in Adversary README.md for environment setup to train and evaluate BehaVR adversaries.
+   - Follow the necessary steps in Adversary README for environment setup to train and evaluate BehaVR adversaries.
 
 ### Testing the Environment (Only for Functional and Reproduced badges)
 For detailed regarding Testing the environment, please refer to the README files in their respective folders.
 
 
 ## Artifact Evaluation (Only for Functional and Reproduced badges)
-While we are unable to share the BehaVR dataset at this time, reviewers who can collect and process their own dataset to reproduce the experiments can follow the steps outlined in the respective README folder
+While we are unable to share the BehaVR dataset at this time, reviewers who can collect and process their own dataset to reproduce the experiments can follow the steps outlined in the respective README folder.
 
 ### Main Results and Claims
-For main results and claims, please refer to the README.md files in their respective folders.
+For main results and claims, please refer to the README files in their respective folders.
 
 ### Experiments 
 For experiments, please refer to the README files in their respective folders.
@@ -83,4 +84,4 @@ For experiments, please refer to the README files in their respective folders.
 Due to IRB restrictions, we are unable to share the original BehaVR dataset. However, we have provided all the necessary code to collect the BehaVR dataset, process the time series data, and train/evaluate BehaVR adversaries to reproduce all the tables and plots featured in the paper.
 
 ## Notes on Reusability (Only for Functional and Reproduced badges)
-Please see the notes on Reusability to the README.md files in their respective folders.
+Please see the notes on Reusability to the README files in their respective folders.
