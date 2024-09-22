@@ -31,7 +31,7 @@ For detailed regarding estimated time and storage consumption, please refer to t
 
 ### Accessibility (All badges)
 - Codebase: https://github.com/UCI-Networking-Group/BehaVR/tree/main
-- Associated Artifacts: 
+
 
 ### Set up the environment 
 To clone the repository and navigate into the project folder, run the following commands:
