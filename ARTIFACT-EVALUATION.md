@@ -9,14 +9,14 @@ Requested Badge: **Available**
 ## Description
 
  **Overview:**
-This repository contains BehaVR, a framework designed to analyze unique user identification using 20 commercial VR apps (See Section 2.3 in the main paper for details about selected apps) using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper BehaVR:User Identification Based on VR Sensor Data. Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework. 
+This repository contains BehaVR, a framework designed to analyze unique user identification using 20 commercial VR apps (See Section 2.3 in the main paper for details about selected apps) using VR sensor data (Body Motion or BM, Eye Gaze or EG, Hand Joint or HJ and Facial Expression or FE) collected by [Oculus Quest Pro](https://www.meta.com/quest/quest-pro/). BehaVR was developed for and utilized in the research paper "BehaVR:User Identification Based on VR Sensor Data". Before using BehaVR, we recommend reading the paper for a comprehensive understanding of the framework. 
 
 ### Security/Privacy Issues and Ethical Concerns (All badges)
 **Privacy Considerations**  
 The data collection involves real-world participants, and the sensor data may include sensitive information or user fingerprints. We kindly ask reviewers to ensure that proper consent and precautions are followed. 
 
 ## Basic Requirements (Only for Functional and Reproduced badges)
-While we are unable to share the BehaVR dataset at this time and are requesting only the available batch, we have included all the necessary information to verify functionality and reproducibility of BehaVR. Reviewers can refer to the respective README folders for detailed hardware and software requirements if they are interested.
+While we are unable to share the BehaVR dataset at this time and are requesting only the available badge, we have included all the necessary information to verify functionality and reproducibility of BehaVR. Reviewers can refer to the respective README folders for detailed hardware and software requirements if they are interested.
 
 ### Hardware Requirements
 For detailed system requirements, please refer to the README files in their respective folders.
@@ -81,7 +81,7 @@ For main results and claims, please refer to the README files in their respectiv
 For experiments, please refer to the README files in their respective folders.
 
 ## Limitations (Only for Functional and Reproduced badges)
-Due to IRB restrictions, we are unable to share the original BehaVR dataset. However, we have provided all the necessary code to collect the BehaVR dataset, process the time series data, and train/evaluate BehaVR adversaries to reproduce all the tables and plots featured in the paper.
+Due to IRB restrictions, we are unable to share the original BehaVR dataset. However, we have provided all the necessary resources to collect the BehaVR dataset, process the time series data, and train/evaluate BehaVR adversaries to reproduce all the tables and plots featured in the paper.
 
 ## Notes on Reusability (Only for Functional and Reproduced badges)
 Please see the notes on Reusability to the README files in their respective folders.
